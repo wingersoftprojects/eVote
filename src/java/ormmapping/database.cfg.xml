@@ -258,15 +258,15 @@
   </Setting>
   <Setting type="1048576">
     <Driver>MySQL5 (Connector/J Driver)</Driver>
-    <DriverFiles>D:\NetbeansProjects\PropertyManagementMaster\src\java\libraries\mysql-connector-java-5.1.26.jar</DriverFiles>
+    <DriverFiles>D:\SOFTWARE\drivers for databases\mysql-connector-java-5.1.7-bin.jar</DriverFiles>
     <Dialect>org.hibernate.dialect.MySQL5InnoDBDialect</Dialect>
     <DriverClass>com.mysql.jdbc.Driver</DriverClass>
-    <URL>jdbc:mysql://localhost/evoting</URL>
-    <UserName>root</UserName>
+    <URL>jdbc:mysql://localhost/wingerso_evoting</URL>
+    <UserName>wingerso_evoting</UserName>
     <Password>WTLura456</Password>
     <HostName>localhost</HostName>
     <PortNO></PortNO>
-    <DBName>evoting</DBName>
+    <DBName>wingerso_evoting</DBName>
     <ServiceName></ServiceName>
     <ServerName></ServerName>
     <SelectedForm>true</SelectedForm>
@@ -306,12 +306,12 @@
     <DriverFiles>D:\WENCE.BENDA\MY.PROJECT\WD\wBMS\jar_files\mysql-connector-java-5.1.7-bin.jar</DriverFiles>
     <Dialect>org.hibernate.dialect.MySQLInnoDBDialect</Dialect>
     <DriverClass>com.mysql.jdbc.Driver</DriverClass>
-    <URL>jdbc:mysql://localhost/entities</URL>
+    <URL>jdbc:mysql://localhost/eihdms</URL>
     <UserName>root</UserName>
     <Password>WTLura456</Password>
     <HostName>localhost</HostName>
     <PortNO></PortNO>
-    <DBName>entities</DBName>
+    <DBName>eihdms</DBName>
     <ServiceName></ServiceName>
     <ServerName></ServerName>
     <SelectedForm>true</SelectedForm>

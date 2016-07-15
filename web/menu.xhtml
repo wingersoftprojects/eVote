@@ -10,22 +10,26 @@
     <h:body>
         <h:form>  
             <p:menubar>
-                <p:submenu label="File" icon="ui-icon-document">
-                    <p:submenu label="New" icon="ui-icon-contact">
-                        <p:menuitem value="Project" url="#" />
-                        <p:menuitem value="Other" url="#" />
-                    </p:submenu>
-                    <p:menuitem value="Open" url="#" />
-                    <p:separator />
-                    <p:menuitem value="Quit" url="#" />
+                <p:submenu label="VOTERS REGISTER" icon="ui-icon-document">
+                    <p:menuitem value="Register New Voter" url="#" />
+                    <p:menuitem value="View Voters Register" url="#" />
                 </p:submenu>
 
-                <p:submenu label="Edit" icon="ui-icon-pencil">
-                    <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
-                    <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                <p:submenu label="CANDIDATE" icon="ui-icon-pencil">
+                    <p:menuitem value="Register New Candidate" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="View Candidates" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                </p:submenu>
+                
+                <p:submenu label="LOCATION" icon="ui-icon-pencil">
+                    <p:menuitem value="District" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="County" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="Subcounty" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="Parish" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="Village" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="Station" url="#" icon="ui-icon-arrowreturnthick-1-e" />
                 </p:submenu>
 
-                <p:submenu label="User Settings" icon="ui-icon-person">
+                <p:submenu label="USERS" icon="ui-icon-person">
                     <p:menuitem value="Group Details" action="groupdetail?faces-redirect=true">
                     </p:menuitem> 
                     <p:menuitem value="User Details" action="userdetail?faces-redirect=true">
