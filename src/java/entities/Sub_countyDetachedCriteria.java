@@ -22,7 +22,7 @@ public class Sub_countyDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression sub_county_id;
 	public final IntegerExpression countyId;
 	public final AssociationExpression county;
-	public final StringExpression subcounty_name;
+	public final StringExpression sub_county_name;
 	public final IntegerExpression is_deleted;
 	public final IntegerExpression is_active;
 	public final TimestampExpression add_date;
@@ -37,7 +37,7 @@ public class Sub_countyDetachedCriteria extends AbstractORMDetachedCriteria {
 		sub_county_id = new IntegerExpression("sub_county_id", this.getDetachedCriteria());
 		countyId = new IntegerExpression("county.county_id", this.getDetachedCriteria());
 		county = new AssociationExpression("county", this.getDetachedCriteria());
-		subcounty_name = new StringExpression("subcounty_name", this.getDetachedCriteria());
+		sub_county_name = new StringExpression("sub_county_name", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
 		is_active = new IntegerExpression("is_active", this.getDetachedCriteria());
 		add_date = new TimestampExpression("add_date", this.getDetachedCriteria());
@@ -53,7 +53,7 @@ public class Sub_countyDetachedCriteria extends AbstractORMDetachedCriteria {
 		sub_county_id = new IntegerExpression("sub_county_id", this.getDetachedCriteria());
 		countyId = new IntegerExpression("county.county_id", this.getDetachedCriteria());
 		county = new AssociationExpression("county", this.getDetachedCriteria());
-		subcounty_name = new StringExpression("subcounty_name", this.getDetachedCriteria());
+		sub_county_name = new StringExpression("sub_county_name", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
 		is_active = new IntegerExpression("is_active", this.getDetachedCriteria());
 		add_date = new TimestampExpression("add_date", this.getDetachedCriteria());

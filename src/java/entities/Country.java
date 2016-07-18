@@ -539,21 +539,6 @@ public class Country implements Serializable {
 	}
 	
 	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      Country object = (Country) obj;
-		        return (this.getCountry_id() == object.getCountry_id());
-	}
-	
 	public String toString() {
 		return String.valueOf(getCountry_id());
 	}

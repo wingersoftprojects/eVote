@@ -22,7 +22,7 @@ public class Sub_countyCriteria extends AbstractORMCriteria {
 	public final IntegerExpression sub_county_id;
 	public final IntegerExpression countyId;
 	public final AssociationExpression county;
-	public final StringExpression subcounty_name;
+	public final StringExpression sub_county_name;
 	public final IntegerExpression is_deleted;
 	public final IntegerExpression is_active;
 	public final TimestampExpression add_date;
@@ -37,7 +37,7 @@ public class Sub_countyCriteria extends AbstractORMCriteria {
 		sub_county_id = new IntegerExpression("sub_county_id", this);
 		countyId = new IntegerExpression("county.county_id", this);
 		county = new AssociationExpression("county", this);
-		subcounty_name = new StringExpression("subcounty_name", this);
+		sub_county_name = new StringExpression("sub_county_name", this);
 		is_deleted = new IntegerExpression("is_deleted", this);
 		is_active = new IntegerExpression("is_active", this);
 		add_date = new TimestampExpression("add_date", this);

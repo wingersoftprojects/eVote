@@ -21,6 +21,8 @@ import org.orm.criteria.*;
 public class Polling_stationCriteria extends AbstractORMCriteria {
 	public final IntegerExpression polling_station_id;
 	public final StringExpression poll_station_name;
+	public final IntegerExpression villageId;
+	public final AssociationExpression village;
 	public final IntegerExpression is_deleted;
 	public final IntegerExpression is_active;
 	public final TimestampExpression add_date;
@@ -34,6 +36,8 @@ public class Polling_stationCriteria extends AbstractORMCriteria {
 		super(criteria);
 		polling_station_id = new IntegerExpression("polling_station_id", this);
 		poll_station_name = new StringExpression("poll_station_name", this);
+		villageId = new IntegerExpression("village.village_id", this);
+		village = new AssociationExpression("village", this);
 		is_deleted = new IntegerExpression("is_deleted", this);
 		is_active = new IntegerExpression("is_active", this);
 		add_date = new TimestampExpression("add_date", this);
@@ -50,6 +54,10 @@ public class Polling_stationCriteria extends AbstractORMCriteria {
 	
 	public Polling_stationCriteria() throws PersistentException {
 		this(entities.EVotingPersistentManager.instance().getSession());
+	}
+	
+	public VillageCriteria createVillageCriteria() {
+		return new VillageCriteria(createCriteria("village"));
 	}
 	
 	public VoterCriteria createVoterCriteria() {

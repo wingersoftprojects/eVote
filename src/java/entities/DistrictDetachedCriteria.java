@@ -31,7 +31,7 @@ public class DistrictDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression last_edit_by;
 	public final CollectionExpression county;
 	public final CollectionExpression post;
-	public final CollectionExpression division_;
+	public final CollectionExpression division;
 	public final CollectionExpression voter;
 	
 	public DistrictDetachedCriteria() {
@@ -48,7 +48,7 @@ public class DistrictDetachedCriteria extends AbstractORMDetachedCriteria {
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
 		county = new CollectionExpression("county", this.getDetachedCriteria());
 		post = new CollectionExpression("post", this.getDetachedCriteria());
-		division_ = new CollectionExpression("division_", this.getDetachedCriteria());
+		division = new CollectionExpression("division", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
 	}
 	
@@ -66,7 +66,7 @@ public class DistrictDetachedCriteria extends AbstractORMDetachedCriteria {
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
 		county = new CollectionExpression("county", this.getDetachedCriteria());
 		post = new CollectionExpression("post", this.getDetachedCriteria());
-		division_ = new CollectionExpression("division_", this.getDetachedCriteria());
+		division = new CollectionExpression("division", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
 	}
 	
@@ -82,8 +82,8 @@ public class DistrictDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new PostDetachedCriteria(createCriteria("post"));
 	}
 	
-	public DivisionDetachedCriteria createDivision_Criteria() {
-		return new DivisionDetachedCriteria(createCriteria("division_"));
+	public DivisionDetachedCriteria createDivisionCriteria() {
+		return new DivisionDetachedCriteria(createCriteria("division"));
 	}
 	
 	public VoterDetachedCriteria createVoterCriteria() {

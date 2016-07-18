@@ -270,7 +270,7 @@
     </Column>
   </Entity>
   <Entity name="group right" PKClustered="0">
-    <Column name="group_rights_id">
+    <Column name="group_right_id">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
@@ -1555,7 +1555,7 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="subcounty_name">
+    <Column name="sub_county_name">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
@@ -1940,6 +1940,96 @@
       <UserTypes/>
     </Column>
   </Entity>
+  <Entity name="village" PKClustered="0">
+    <Column name="village_id">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="village_name">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>100</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="is_deleted">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>1</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="is_active">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>1</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="add_date">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>20</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="add_by">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="last_edit_date">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>20</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="last_edit_by">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
   <ForeignKey name="FKgroup righ766216">
     <ReferenceTable>group right</ReferenceTable>
     <ReferencedTable>group_detail</ReferencedTable>
@@ -2168,6 +2258,26 @@
     </Columns>
     <RefColumns>
       <Column>group_detail_id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKpolling_st7390">
+    <ReferenceTable>polling_station</ReferenceTable>
+    <ReferencedTable>village</ReferencedTable>
+    <Columns>
+      <Column>village_id</Column>
+    </Columns>
+    <RefColumns>
+      <Column>village_id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKvoter382387">
+    <ReferenceTable>voter</ReferenceTable>
+    <ReferencedTable>village</ReferencedTable>
+    <Columns>
+      <Column>village_id</Column>
+    </Columns>
+    <RefColumns>
+      <Column>village_id</Column>
     </RefColumns>
   </ForeignKey>
 </Model>

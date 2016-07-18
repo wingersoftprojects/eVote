@@ -23,6 +23,8 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression voter_name;
 	public final IntegerExpression polling_stationId;
 	public final AssociationExpression polling_station;
+	public final IntegerExpression villageId;
+	public final AssociationExpression village;
 	public final StringExpression sur_name;
 	public final StringExpression given_names;
 	public final StringExpression sex;
@@ -52,6 +54,8 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		voter_name = new StringExpression("voter_name", this.getDetachedCriteria());
 		polling_stationId = new IntegerExpression("polling_station.polling_station_id", this.getDetachedCriteria());
 		polling_station = new AssociationExpression("polling_station", this.getDetachedCriteria());
+		villageId = new IntegerExpression("village.village_id", this.getDetachedCriteria());
+		village = new AssociationExpression("village", this.getDetachedCriteria());
 		sur_name = new StringExpression("sur_name", this.getDetachedCriteria());
 		given_names = new StringExpression("given_names", this.getDetachedCriteria());
 		sex = new StringExpression("sex", this.getDetachedCriteria());
@@ -82,6 +86,8 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		voter_name = new StringExpression("voter_name", this.getDetachedCriteria());
 		polling_stationId = new IntegerExpression("polling_station.polling_station_id", this.getDetachedCriteria());
 		polling_station = new AssociationExpression("polling_station", this.getDetachedCriteria());
+		villageId = new IntegerExpression("village.village_id", this.getDetachedCriteria());
+		village = new AssociationExpression("village", this.getDetachedCriteria());
 		sur_name = new StringExpression("sur_name", this.getDetachedCriteria());
 		given_names = new StringExpression("given_names", this.getDetachedCriteria());
 		sex = new StringExpression("sex", this.getDetachedCriteria());
@@ -108,6 +114,10 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public Polling_stationDetachedCriteria createPolling_stationCriteria() {
 		return new Polling_stationDetachedCriteria(createCriteria("polling_station"));
+	}
+	
+	public VillageDetachedCriteria createVillageCriteria() {
+		return new VillageDetachedCriteria(createCriteria("village"));
 	}
 	
 	public ParishDetachedCriteria createParishCriteria() {

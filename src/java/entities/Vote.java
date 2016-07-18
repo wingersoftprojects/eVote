@@ -549,21 +549,6 @@ public class Vote implements Serializable {
 		return candidate;
 	}
 	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      Vote object = (Vote) obj;
-		        return (this.getVote_id() == object.getVote_id());
-	}
-	
 	public String toString() {
 		return String.valueOf(getVote_id());
 	}

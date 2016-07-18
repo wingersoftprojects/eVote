@@ -26,7 +26,7 @@ public class User_detailCriteria extends AbstractORMCriteria {
 	public final StringExpression second_name;
 	public final StringExpression third_name;
 	public final StringExpression position;
-	public final StringExpression image_name;
+	public final StringExpression user_image;
 	public final IntegerExpression is_user_gen_admin;
 	public final StringExpression email_address;
 	public final IntegerExpression is_deleted;
@@ -46,7 +46,7 @@ public class User_detailCriteria extends AbstractORMCriteria {
 		second_name = new StringExpression("second_name", this);
 		third_name = new StringExpression("third_name", this);
 		position = new StringExpression("position", this);
-		image_name = new StringExpression("image_name", this);
+		user_image = new StringExpression("user_image", this);
 		is_user_gen_admin = new IntegerExpression("is_user_gen_admin", this);
 		email_address = new StringExpression("email_address", this);
 		is_deleted = new IntegerExpression("is_deleted", this);

@@ -23,6 +23,8 @@ public class VoterCriteria extends AbstractORMCriteria {
 	public final StringExpression voter_name;
 	public final IntegerExpression polling_stationId;
 	public final AssociationExpression polling_station;
+	public final IntegerExpression villageId;
+	public final AssociationExpression village;
 	public final StringExpression sur_name;
 	public final StringExpression given_names;
 	public final StringExpression sex;
@@ -52,6 +54,8 @@ public class VoterCriteria extends AbstractORMCriteria {
 		voter_name = new StringExpression("voter_name", this);
 		polling_stationId = new IntegerExpression("polling_station.polling_station_id", this);
 		polling_station = new AssociationExpression("polling_station", this);
+		villageId = new IntegerExpression("village.village_id", this);
+		village = new AssociationExpression("village", this);
 		sur_name = new StringExpression("sur_name", this);
 		given_names = new StringExpression("given_names", this);
 		sex = new StringExpression("sex", this);
@@ -86,6 +90,10 @@ public class VoterCriteria extends AbstractORMCriteria {
 	
 	public Polling_stationCriteria createPolling_stationCriteria() {
 		return new Polling_stationCriteria(createCriteria("polling_station"));
+	}
+	
+	public VillageCriteria createVillageCriteria() {
+		return new VillageCriteria(createCriteria("village"));
 	}
 	
 	public ParishCriteria createParishCriteria() {

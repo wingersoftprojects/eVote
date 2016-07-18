@@ -366,7 +366,7 @@ public class Division implements Serializable {
 	public boolean deleteAndDissociate()throws PersistentException {
 		try {
 			if(getDistrict() != null) {
-				getDistrict().getDivision_().remove(this);
+				getDistrict().getDivision().remove(this);
 			}
 			
 			entities.Post[] lPosts = (entities.Post[])getPost().toArray(new entities.Post[getPost().size()]);
@@ -384,7 +384,7 @@ public class Division implements Serializable {
 	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
 		try {
 			if(getDistrict() != null) {
-				getDistrict().getDivision_().remove(this);
+				getDistrict().getDivision().remove(this);
 			}
 			
 			entities.Post[] lPosts = (entities.Post[])getPost().toArray(new entities.Post[getPost().size()]);
@@ -537,21 +537,6 @@ public class Division implements Serializable {
 		return post;
 	}
 	
-	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      Division object = (Division) obj;
-		        return (this.getDivision_id() == object.getDivision_id());
-	}
 	
 	public String toString() {
 		return String.valueOf(getDivision_id());

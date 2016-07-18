@@ -516,21 +516,6 @@ public class Finger_print implements Serializable {
 		return voter;
 	}
 	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      Finger_print object = (Finger_print) obj;
-		        return (this.getFinger_print_id() == object.getFinger_print_id());
-	}
-	
 	public String toString() {
 		return String.valueOf(getFinger_print_id());
 	}

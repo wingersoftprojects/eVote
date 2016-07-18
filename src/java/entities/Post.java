@@ -623,21 +623,6 @@ public class Post implements Serializable {
 	}
 	
 	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      Post object = (Post) obj;
-		        return (this.getPost_id() == object.getPost_id());
-	}
-	
 	public String toString() {
 		return String.valueOf(getPost_id());
 	}

@@ -27,8 +27,8 @@ public class Group_detailDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression add_by;
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
-	public final CollectionExpression group_rights;
 	public final CollectionExpression group_user;
+	public final CollectionExpression group_right;
 	
 	public Group_detailDetachedCriteria() {
 		super(entities.Group_detail.class, entities.Group_detailCriteria.class);
@@ -40,8 +40,8 @@ public class Group_detailDetachedCriteria extends AbstractORMDetachedCriteria {
 		add_by = new IntegerExpression("add_by", this.getDetachedCriteria());
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
-		group_rights = new CollectionExpression("group_rights", this.getDetachedCriteria());
 		group_user = new CollectionExpression("group_user", this.getDetachedCriteria());
+		group_right = new CollectionExpression("group_right", this.getDetachedCriteria());
 	}
 	
 	public Group_detailDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -54,16 +54,16 @@ public class Group_detailDetachedCriteria extends AbstractORMDetachedCriteria {
 		add_by = new IntegerExpression("add_by", this.getDetachedCriteria());
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
-		group_rights = new CollectionExpression("group_rights", this.getDetachedCriteria());
 		group_user = new CollectionExpression("group_user", this.getDetachedCriteria());
-	}
-	
-	public Group_rightDetachedCriteria createGroup_rightsCriteria() {
-		return new Group_rightDetachedCriteria(createCriteria("group_rights"));
+		group_right = new CollectionExpression("group_right", this.getDetachedCriteria());
 	}
 	
 	public Group_userDetachedCriteria createGroup_userCriteria() {
 		return new Group_userDetachedCriteria(createCriteria("group_user"));
+	}
+	
+	public Group_rightDetachedCriteria createGroup_rightCriteria() {
+		return new Group_rightDetachedCriteria(createCriteria("group_right"));
 	}
 	
 	public Group_detail uniqueGroup_detail(PersistentSession session) {

@@ -365,8 +365,8 @@ public class Group_right implements Serializable {
 	
 	public boolean deleteAndDissociate()throws PersistentException {
 		try {
-			if(getGroup_detail() != null) {
-				getGroup_detail().getGroup_rights().remove(this);
+			if(getGroup() != null) {
+				getGroup().getGroup_right().remove(this);
 			}
 			
 			return delete();
@@ -379,8 +379,8 @@ public class Group_right implements Serializable {
 	
 	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
 		try {
-			if(getGroup_detail() != null) {
-				getGroup_detail().getGroup_rights().remove(this);
+			if(getGroup() != null) {
+				getGroup().getGroup_right().remove(this);
 			}
 			
 			try {
@@ -396,7 +396,7 @@ public class Group_right implements Serializable {
 		}
 	}
 	
-	@Column(name="group_rights_id", nullable=false, length=10)	
+	@Column(name="group_right_id", nullable=false, length=10)	
 	@Id	
 	@GeneratedValue(generator="ENTITIES_GROUP_RIGHT_GROUP_RIGHT_ID_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="ENTITIES_GROUP_RIGHT_GROUP_RIGHT_ID_GENERATOR", strategy="native")	
@@ -405,7 +405,7 @@ public class Group_right implements Serializable {
 	@ManyToOne(targetEntity=entities.Group_detail.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="group_id", referencedColumnName="group_detail_id", nullable=false) })	
-	private entities.Group_detail group_detail;
+	private entities.Group_detail group;
 	
 	@Column(name="function_name", nullable=false, length=100)	
 	private String function_name;
@@ -474,6 +474,54 @@ public class Group_right implements Serializable {
 		return function_name;
 	}
 	
+	public void setAllow_view(int value) {
+		setAllow_view(new Integer(value));
+	}
+	
+	public void setAllow_view(Integer value) {
+		this.allow_view = value;
+	}
+	
+	public Integer getAllow_view() {
+		return allow_view;
+	}
+	
+	public void setAllow_add(int value) {
+		setAllow_add(new Integer(value));
+	}
+	
+	public void setAllow_add(Integer value) {
+		this.allow_add = value;
+	}
+	
+	public Integer getAllow_add() {
+		return allow_add;
+	}
+	
+	public void setAllow_edit(int value) {
+		setAllow_edit(new Integer(value));
+	}
+	
+	public void setAllow_edit(Integer value) {
+		this.allow_edit = value;
+	}
+	
+	public Integer getAllow_edit() {
+		return allow_edit;
+	}
+	
+	public void setAllow_delete(int value) {
+		setAllow_delete(new Integer(value));
+	}
+	
+	public void setAllow_delete(Integer value) {
+		this.allow_delete = value;
+	}
+	
+	public Integer getAllow_delete() {
+		return allow_delete;
+	}
+	
 	public void setIs_deleted(int value) {
 		setIs_deleted(new Integer(value));
 	}
@@ -534,75 +582,12 @@ public class Group_right implements Serializable {
 		return last_edit_by;
 	}
 	
-	public void setAllow_view(int value) {
-		setAllow_view(new Integer(value));
+	public void setGroup(entities.Group_detail value) {
+		this.group = value;
 	}
 	
-	public void setAllow_view(Integer value) {
-		this.allow_view = value;
-	}
-	
-	public Integer getAllow_view() {
-		return allow_view;
-	}
-	
-	public void setAllow_add(int value) {
-		setAllow_add(new Integer(value));
-	}
-	
-	public void setAllow_add(Integer value) {
-		this.allow_add = value;
-	}
-	
-	public Integer getAllow_add() {
-		return allow_add;
-	}
-	
-	public void setAllow_edit(int value) {
-		setAllow_edit(new Integer(value));
-	}
-	
-	public void setAllow_edit(Integer value) {
-		this.allow_edit = value;
-	}
-	
-	public Integer getAllow_edit() {
-		return allow_edit;
-	}
-	
-	public void setAllow_delete(int value) {
-		setAllow_delete(new Integer(value));
-	}
-	
-	public void setAllow_delete(Integer value) {
-		this.allow_delete = value;
-	}
-	
-	public Integer getAllow_delete() {
-		return allow_delete;
-	}
-	
-	public void setGroup_detail(entities.Group_detail value) {
-		this.group_detail = value;
-	}
-	
-	public entities.Group_detail getGroup_detail() {
-		return group_detail;
-	}
-	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      Group_right object = (Group_right) obj;
-		        return (this.getGroup_right_id() == object.getGroup_right_id());
+	public entities.Group_detail getGroup() {
+		return group;
 	}
 	
 	public String toString() {

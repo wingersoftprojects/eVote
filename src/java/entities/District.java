@@ -377,9 +377,9 @@ public class District implements Serializable {
 			for(int i = 0; i < lPosts.length; i++) {
 				lPosts[i].setDistrict(null);
 			}
-			entities.Division[] lDivision_s = (entities.Division[])getDivision_().toArray(new entities.Division[getDivision_().size()]);
-			for(int i = 0; i < lDivision_s.length; i++) {
-				lDivision_s[i].setDistrict(null);
+			entities.Division[] lDivisions = (entities.Division[])getDivision().toArray(new entities.Division[getDivision().size()]);
+			for(int i = 0; i < lDivisions.length; i++) {
+				lDivisions[i].setDistrict(null);
 			}
 			entities.Voter[] lVoters = (entities.Voter[])getVoter().toArray(new entities.Voter[getVoter().size()]);
 			for(int i = 0; i < lVoters.length; i++) {
@@ -407,9 +407,9 @@ public class District implements Serializable {
 			for(int i = 0; i < lPosts.length; i++) {
 				lPosts[i].setDistrict(null);
 			}
-			entities.Division[] lDivision_s = (entities.Division[])getDivision_().toArray(new entities.Division[getDivision_().size()]);
-			for(int i = 0; i < lDivision_s.length; i++) {
-				lDivision_s[i].setDistrict(null);
+			entities.Division[] lDivisions = (entities.Division[])getDivision().toArray(new entities.Division[getDivision().size()]);
+			for(int i = 0; i < lDivisions.length; i++) {
+				lDivisions[i].setDistrict(null);
 			}
 			entities.Voter[] lVoters = (entities.Voter[])getVoter().toArray(new entities.Voter[getVoter().size()]);
 			for(int i = 0; i < lVoters.length; i++) {
@@ -473,7 +473,7 @@ public class District implements Serializable {
 	@OneToMany(mappedBy="district", targetEntity=entities.Division.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
-	private java.util.Set division_ = new java.util.HashSet();
+	private java.util.Set division = new java.util.HashSet();
 	
 	@OneToMany(mappedBy="district", targetEntity=entities.Voter.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
@@ -586,12 +586,12 @@ public class District implements Serializable {
 	}
 	
 	
-	public void setDivision_(java.util.Set value) {
-		this.division_ = value;
+	public void setDivision(java.util.Set value) {
+		this.division = value;
 	}
 	
-	public java.util.Set getDivision_() {
-		return division_;
+	public java.util.Set getDivision() {
+		return division;
 	}
 	
 	
@@ -603,21 +603,6 @@ public class District implements Serializable {
 		return voter;
 	}
 	
-	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      District object = (District) obj;
-		        return (this.getDistrict_id() == object.getDistrict_id());
-	}
 	
 	public String toString() {
 		return String.valueOf(getDistrict_id());

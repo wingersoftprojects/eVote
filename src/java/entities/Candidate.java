@@ -373,8 +373,8 @@ public class Candidate implements Serializable {
 				getPost().getCandidate().remove(this);
 			}
 			
-			if(getPolling_station() != null) {
-				getPolling_station().getCandidate().remove(this);
+			if(getPoll_station() != null) {
+				getPoll_station().getCandidate().remove(this);
 			}
 			
 			entities.Vote[] lVotes = (entities.Vote[])getVote().toArray(new entities.Vote[getVote().size()]);
@@ -399,8 +399,8 @@ public class Candidate implements Serializable {
 				getPost().getCandidate().remove(this);
 			}
 			
-			if(getPolling_station() != null) {
-				getPolling_station().getCandidate().remove(this);
+			if(getPoll_station() != null) {
+				getPoll_station().getCandidate().remove(this);
 			}
 			
 			entities.Vote[] lVotes = (entities.Vote[])getVote().toArray(new entities.Vote[getVote().size()]);
@@ -442,7 +442,7 @@ public class Candidate implements Serializable {
 	@ManyToOne(targetEntity=entities.Polling_station.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="poll_station_id", referencedColumnName="polling_station_id", nullable=false) })	
-	private entities.Polling_station polling_station;
+	private entities.Polling_station poll_station;
 	
 	@Column(name="is_deleted", nullable=true, length=1)	
 	private Integer is_deleted;
@@ -563,12 +563,12 @@ public class Candidate implements Serializable {
 		return post;
 	}
 	
-	public void setPolling_station(entities.Polling_station value) {
-		this.polling_station = value;
+	public void setPoll_station(entities.Polling_station value) {
+		this.poll_station = value;
 	}
 	
-	public entities.Polling_station getPolling_station() {
-		return polling_station;
+	public entities.Polling_station getPoll_station() {
+		return poll_station;
 	}
 	
 	public void setVote(java.util.Set value) {
@@ -579,21 +579,6 @@ public class Candidate implements Serializable {
 		return vote;
 	}
 	
-	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      Candidate object = (Candidate) obj;
-		        return (this.getCandidate_id() == object.getCandidate_id());
-	}
 	
 	public String toString() {
 		return String.valueOf(getCandidate_id());

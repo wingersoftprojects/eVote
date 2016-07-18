@@ -421,7 +421,7 @@ public class User_detail implements Serializable {
 	private String position;
 	
 	@Column(name="user_image", nullable=true, length=100)	
-	private String image_name;
+	private String user_image;
 	
 	@Column(name="is_user_gen_admin", nullable=false, length=1)	
 	private int is_user_gen_admin;
@@ -480,38 +480,6 @@ public class User_detail implements Serializable {
 		return user_password;
 	}
 	
-	public void setPosition(String value) {
-		this.position = value;
-	}
-	
-	public String getPosition() {
-		return position;
-	}
-	
-	public void setImage_name(String value) {
-		this.image_name = value;
-	}
-	
-	public String getImage_name() {
-		return image_name;
-	}
-	
-	public void setIs_user_gen_admin(int value) {
-		this.is_user_gen_admin = value;
-	}
-	
-	public int getIs_user_gen_admin() {
-		return is_user_gen_admin;
-	}
-	
-	public void setEmail_address(String value) {
-		this.email_address = value;
-	}
-	
-	public String getEmail_address() {
-		return email_address;
-	}
-	
 	public void setFirst_name(String value) {
 		this.first_name = value;
 	}
@@ -534,6 +502,38 @@ public class User_detail implements Serializable {
 	
 	public String getThird_name() {
 		return third_name;
+	}
+	
+	public void setPosition(String value) {
+		this.position = value;
+	}
+	
+	public String getPosition() {
+		return position;
+	}
+	
+	public void setUser_image(String value) {
+		this.user_image = value;
+	}
+	
+	public String getUser_image() {
+		return user_image;
+	}
+	
+	public void setIs_user_gen_admin(int value) {
+		this.is_user_gen_admin = value;
+	}
+	
+	public int getIs_user_gen_admin() {
+		return is_user_gen_admin;
+	}
+	
+	public void setEmail_address(String value) {
+		this.email_address = value;
+	}
+	
+	public String getEmail_address() {
+		return email_address;
 	}
 	
 	public void setIs_deleted(int value) {
@@ -608,21 +608,6 @@ public class User_detail implements Serializable {
 		return group_user;
 	}
 	
-	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      User_detail object = (User_detail) obj;
-		        return (this.getUser_detail_id() == object.getUser_detail_id());
-	}
 	
 	public String toString() {
 		return String.valueOf(getUser_detail_id());

@@ -423,8 +423,8 @@ public class Sub_county implements Serializable {
 	@JoinColumns({ @JoinColumn(name="county_id", referencedColumnName="county_id", nullable=false) })	
 	private entities.County county;
 	
-	@Column(name="subcounty_name", nullable=false, length=100)	
-	private String subcounty_name;
+	@Column(name="sub_county_name", nullable=false, length=100)	
+	private String sub_county_name;
 	
 	@Column(name="is_deleted", nullable=true, length=1)	
 	private Integer is_deleted;
@@ -466,12 +466,12 @@ public class Sub_county implements Serializable {
 		return getSub_county_id();
 	}
 	
-	public void setSubcounty_name(String value) {
-		this.subcounty_name = value;
+	public void setSub_county_name(String value) {
+		this.sub_county_name = value;
 	}
 	
-	public String getSubcounty_name() {
-		return subcounty_name;
+	public String getSub_county_name() {
+		return sub_county_name;
 	}
 	
 	public void setIs_deleted(int value) {
@@ -559,21 +559,6 @@ public class Sub_county implements Serializable {
 		return voter;
 	}
 	
-	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      Sub_county object = (Sub_county) obj;
-		        return (this.getSub_county_id() == object.getSub_county_id());
-	}
 	
 	public String toString() {
 		return String.valueOf(getSub_county_id());

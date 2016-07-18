@@ -369,6 +369,10 @@ public class Voter implements Serializable {
 				getPolling_station().getVoter().remove(this);
 			}
 			
+			if(getVillage() != null) {
+				getVillage().getVoter().remove(this);
+			}
+			
 			if(getParish() != null) {
 				getParish().getVoter().remove(this);
 			}
@@ -405,6 +409,10 @@ public class Voter implements Serializable {
 		try {
 			if(getPolling_station() != null) {
 				getPolling_station().getVoter().remove(this);
+			}
+			
+			if(getVillage() != null) {
+				getVillage().getVoter().remove(this);
 			}
 			
 			if(getParish() != null) {
@@ -457,6 +465,11 @@ public class Voter implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="polling_station_id", referencedColumnName="polling_station_id", nullable=false) })	
 	private entities.Polling_station polling_station;
+	
+	@ManyToOne(targetEntity=entities.Village.class, fetch=FetchType.LAZY)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
+	@JoinColumns({ @JoinColumn(name="village_id", referencedColumnName="village_id", nullable=false) })	
+	private entities.Village village;
 	
 	@Column(name="sur_name", nullable=true, length=100)	
 	private String sur_name;
@@ -693,6 +706,14 @@ public class Voter implements Serializable {
 		return district;
 	}
 	
+	public void setVillage(entities.Village value) {
+		this.village = value;
+	}
+	
+	public entities.Village getVillage() {
+		return village;
+	}
+	
 	public void setFinger_print(java.util.Set value) {
 		this.finger_print = value;
 	}
@@ -710,21 +731,6 @@ public class Voter implements Serializable {
 		return candidate;
 	}
 	
-	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      Voter object = (Voter) obj;
-		        return (this.getVoter_id() == object.getVoter_id());
-	}
 	
 	public String toString() {
 		return String.valueOf(getVoter_id());

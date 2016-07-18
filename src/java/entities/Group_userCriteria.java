@@ -22,8 +22,8 @@ public class Group_userCriteria extends AbstractORMCriteria {
 	public final IntegerExpression group_user_id;
 	public final IntegerExpression user_detailId;
 	public final AssociationExpression user_detail;
-	public final IntegerExpression group_detailId;
-	public final AssociationExpression group_detail;
+	public final IntegerExpression groupId;
+	public final AssociationExpression group;
 	public final IntegerExpression is_deleted;
 	public final IntegerExpression is_active;
 	public final TimestampExpression add_date;
@@ -36,8 +36,8 @@ public class Group_userCriteria extends AbstractORMCriteria {
 		group_user_id = new IntegerExpression("group_user_id", this);
 		user_detailId = new IntegerExpression("user_detail.user_detail_id", this);
 		user_detail = new AssociationExpression("user_detail", this);
-		group_detailId = new IntegerExpression("group_detail.group_detail_id", this);
-		group_detail = new AssociationExpression("group_detail", this);
+		groupId = new IntegerExpression("group.group_detail_id", this);
+		group = new AssociationExpression("group", this);
 		is_deleted = new IntegerExpression("is_deleted", this);
 		is_active = new IntegerExpression("is_active", this);
 		add_date = new TimestampExpression("add_date", this);
@@ -58,8 +58,8 @@ public class Group_userCriteria extends AbstractORMCriteria {
 		return new User_detailCriteria(createCriteria("user_detail"));
 	}
 	
-	public Group_detailCriteria createGroup_detailCriteria() {
-		return new Group_detailCriteria(createCriteria("group_detail"));
+	public Group_detailCriteria createGroupCriteria() {
+		return new Group_detailCriteria(createCriteria("group"));
 	}
 	
 	public Group_user uniqueGroup_user() {

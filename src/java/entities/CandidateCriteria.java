@@ -25,8 +25,8 @@ public class CandidateCriteria extends AbstractORMCriteria {
 	public final AssociationExpression voter;
 	public final IntegerExpression postId;
 	public final AssociationExpression post;
-	public final IntegerExpression polling_stationId;
-	public final AssociationExpression polling_station;
+	public final IntegerExpression poll_stationId;
+	public final AssociationExpression poll_station;
 	public final IntegerExpression is_deleted;
 	public final IntegerExpression is_active;
 	public final TimestampExpression add_date;
@@ -43,8 +43,8 @@ public class CandidateCriteria extends AbstractORMCriteria {
 		voter = new AssociationExpression("voter", this);
 		postId = new IntegerExpression("post.post_id", this);
 		post = new AssociationExpression("post", this);
-		polling_stationId = new IntegerExpression("polling_station.polling_station_id", this);
-		polling_station = new AssociationExpression("polling_station", this);
+		poll_stationId = new IntegerExpression("poll_station.polling_station_id", this);
+		poll_station = new AssociationExpression("poll_station", this);
 		is_deleted = new IntegerExpression("is_deleted", this);
 		is_active = new IntegerExpression("is_active", this);
 		add_date = new TimestampExpression("add_date", this);
@@ -70,8 +70,8 @@ public class CandidateCriteria extends AbstractORMCriteria {
 		return new PostCriteria(createCriteria("post"));
 	}
 	
-	public Polling_stationCriteria createPolling_stationCriteria() {
-		return new Polling_stationCriteria(createCriteria("polling_station"));
+	public Polling_stationCriteria createPoll_stationCriteria() {
+		return new Polling_stationCriteria(createCriteria("poll_station"));
 	}
 	
 	public VoteCriteria createVoteCriteria() {

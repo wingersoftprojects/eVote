@@ -25,8 +25,8 @@ public class CandidateDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final AssociationExpression voter;
 	public final IntegerExpression postId;
 	public final AssociationExpression post;
-	public final IntegerExpression polling_stationId;
-	public final AssociationExpression polling_station;
+	public final IntegerExpression poll_stationId;
+	public final AssociationExpression poll_station;
 	public final IntegerExpression is_deleted;
 	public final IntegerExpression is_active;
 	public final TimestampExpression add_date;
@@ -43,8 +43,8 @@ public class CandidateDetachedCriteria extends AbstractORMDetachedCriteria {
 		voter = new AssociationExpression("voter", this.getDetachedCriteria());
 		postId = new IntegerExpression("post.post_id", this.getDetachedCriteria());
 		post = new AssociationExpression("post", this.getDetachedCriteria());
-		polling_stationId = new IntegerExpression("polling_station.polling_station_id", this.getDetachedCriteria());
-		polling_station = new AssociationExpression("polling_station", this.getDetachedCriteria());
+		poll_stationId = new IntegerExpression("poll_station.polling_station_id", this.getDetachedCriteria());
+		poll_station = new AssociationExpression("poll_station", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
 		is_active = new IntegerExpression("is_active", this.getDetachedCriteria());
 		add_date = new TimestampExpression("add_date", this.getDetachedCriteria());
@@ -62,8 +62,8 @@ public class CandidateDetachedCriteria extends AbstractORMDetachedCriteria {
 		voter = new AssociationExpression("voter", this.getDetachedCriteria());
 		postId = new IntegerExpression("post.post_id", this.getDetachedCriteria());
 		post = new AssociationExpression("post", this.getDetachedCriteria());
-		polling_stationId = new IntegerExpression("polling_station.polling_station_id", this.getDetachedCriteria());
-		polling_station = new AssociationExpression("polling_station", this.getDetachedCriteria());
+		poll_stationId = new IntegerExpression("poll_station.polling_station_id", this.getDetachedCriteria());
+		poll_station = new AssociationExpression("poll_station", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
 		is_active = new IntegerExpression("is_active", this.getDetachedCriteria());
 		add_date = new TimestampExpression("add_date", this.getDetachedCriteria());
@@ -81,8 +81,8 @@ public class CandidateDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new PostDetachedCriteria(createCriteria("post"));
 	}
 	
-	public Polling_stationDetachedCriteria createPolling_stationCriteria() {
-		return new Polling_stationDetachedCriteria(createCriteria("polling_station"));
+	public Polling_stationDetachedCriteria createPoll_stationCriteria() {
+		return new Polling_stationDetachedCriteria(createCriteria("poll_station"));
 	}
 	
 	public VoteDetachedCriteria createVoteCriteria() {

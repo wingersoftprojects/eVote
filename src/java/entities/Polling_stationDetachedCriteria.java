@@ -21,6 +21,8 @@ import org.orm.criteria.*;
 public class Polling_stationDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression polling_station_id;
 	public final StringExpression poll_station_name;
+	public final IntegerExpression villageId;
+	public final AssociationExpression village;
 	public final IntegerExpression is_deleted;
 	public final IntegerExpression is_active;
 	public final TimestampExpression add_date;
@@ -34,6 +36,8 @@ public class Polling_stationDetachedCriteria extends AbstractORMDetachedCriteria
 		super(entities.Polling_station.class, entities.Polling_stationCriteria.class);
 		polling_station_id = new IntegerExpression("polling_station_id", this.getDetachedCriteria());
 		poll_station_name = new StringExpression("poll_station_name", this.getDetachedCriteria());
+		villageId = new IntegerExpression("village.village_id", this.getDetachedCriteria());
+		village = new AssociationExpression("village", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
 		is_active = new IntegerExpression("is_active", this.getDetachedCriteria());
 		add_date = new TimestampExpression("add_date", this.getDetachedCriteria());
@@ -48,6 +52,8 @@ public class Polling_stationDetachedCriteria extends AbstractORMDetachedCriteria
 		super(aDetachedCriteria, entities.Polling_stationCriteria.class);
 		polling_station_id = new IntegerExpression("polling_station_id", this.getDetachedCriteria());
 		poll_station_name = new StringExpression("poll_station_name", this.getDetachedCriteria());
+		villageId = new IntegerExpression("village.village_id", this.getDetachedCriteria());
+		village = new AssociationExpression("village", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
 		is_active = new IntegerExpression("is_active", this.getDetachedCriteria());
 		add_date = new TimestampExpression("add_date", this.getDetachedCriteria());
@@ -56,6 +62,10 @@ public class Polling_stationDetachedCriteria extends AbstractORMDetachedCriteria
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
 		candidate = new CollectionExpression("candidate", this.getDetachedCriteria());
+	}
+	
+	public VillageDetachedCriteria createVillageCriteria() {
+		return new VillageDetachedCriteria(createCriteria("village"));
 	}
 	
 	public VoterDetachedCriteria createVoterCriteria() {

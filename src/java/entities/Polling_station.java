@@ -365,13 +365,17 @@ public class Polling_station implements Serializable {
 	
 	public boolean deleteAndDissociate()throws PersistentException {
 		try {
+			if(getVillage() != null) {
+				getVillage().getPolling_station().remove(this);
+			}
+			
 			entities.Voter[] lVoters = (entities.Voter[])getVoter().toArray(new entities.Voter[getVoter().size()]);
 			for(int i = 0; i < lVoters.length; i++) {
 				lVoters[i].setPolling_station(null);
 			}
 			entities.Candidate[] lCandidates = (entities.Candidate[])getCandidate().toArray(new entities.Candidate[getCandidate().size()]);
 			for(int i = 0; i < lCandidates.length; i++) {
-				lCandidates[i].setPolling_station(null);
+				lCandidates[i].setPoll_station(null);
 			}
 			return delete();
 		}
@@ -383,13 +387,17 @@ public class Polling_station implements Serializable {
 	
 	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
 		try {
+			if(getVillage() != null) {
+				getVillage().getPolling_station().remove(this);
+			}
+			
 			entities.Voter[] lVoters = (entities.Voter[])getVoter().toArray(new entities.Voter[getVoter().size()]);
 			for(int i = 0; i < lVoters.length; i++) {
 				lVoters[i].setPolling_station(null);
 			}
 			entities.Candidate[] lCandidates = (entities.Candidate[])getCandidate().toArray(new entities.Candidate[getCandidate().size()]);
 			for(int i = 0; i < lCandidates.length; i++) {
-				lCandidates[i].setPolling_station(null);
+				lCandidates[i].setPoll_station(null);
 			}
 			try {
 				session.delete(this);
@@ -412,6 +420,11 @@ public class Polling_station implements Serializable {
 	
 	@Column(name="poll_station_name", nullable=false, length=50)	
 	private String poll_station_name;
+	
+	@ManyToOne(targetEntity=entities.Village.class, fetch=FetchType.LAZY)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
+	@JoinColumns({ @JoinColumn(name="village_id", referencedColumnName="village_id", nullable=false) })	
+	private entities.Village village;
 	
 	@Column(name="is_deleted", nullable=true, length=1)	
 	private Integer is_deleted;
@@ -436,7 +449,7 @@ public class Polling_station implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set voter = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="polling_station", targetEntity=entities.Candidate.class)	
+	@OneToMany(mappedBy="poll_station", targetEntity=entities.Candidate.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set candidate = new java.util.HashSet();
@@ -521,6 +534,14 @@ public class Polling_station implements Serializable {
 		return last_edit_by;
 	}
 	
+	public void setVillage(entities.Village value) {
+		this.village = value;
+	}
+	
+	public entities.Village getVillage() {
+		return village;
+	}
+	
 	public void setVoter(java.util.Set value) {
 		this.voter = value;
 	}
@@ -538,21 +559,6 @@ public class Polling_station implements Serializable {
 		return candidate;
 	}
 	
-	
-	@Override	
-	public int hashCode() {
-		int hash = 3;
-		        return hash;
-	}
-	
-	@Override	
-	public boolean equals(Object obj) {
-		if (obj == null) {
-		            return false;
-		        }
-		      Polling_station object = (Polling_station) obj;
-		        return (this.getPolling_station_id() == object.getPolling_station_id());
-	}
 	
 	public String toString() {
 		return String.valueOf(getPolling_station_id());

@@ -31,7 +31,7 @@ public class DistrictCriteria extends AbstractORMCriteria {
 	public final IntegerExpression last_edit_by;
 	public final CollectionExpression county;
 	public final CollectionExpression post;
-	public final CollectionExpression division_;
+	public final CollectionExpression division;
 	public final CollectionExpression voter;
 	
 	public DistrictCriteria(Criteria criteria) {
@@ -48,7 +48,7 @@ public class DistrictCriteria extends AbstractORMCriteria {
 		last_edit_by = new IntegerExpression("last_edit_by", this);
 		county = new CollectionExpression("county", this);
 		post = new CollectionExpression("post", this);
-		division_ = new CollectionExpression("division_", this);
+		division = new CollectionExpression("division", this);
 		voter = new CollectionExpression("voter", this);
 	}
 	
@@ -72,8 +72,8 @@ public class DistrictCriteria extends AbstractORMCriteria {
 		return new PostCriteria(createCriteria("post"));
 	}
 	
-	public DivisionCriteria createDivision_Criteria() {
-		return new DivisionCriteria(createCriteria("division_"));
+	public DivisionCriteria createDivisionCriteria() {
+		return new DivisionCriteria(createCriteria("division"));
 	}
 	
 	public VoterCriteria createVoterCriteria() {
