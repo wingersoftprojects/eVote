@@ -31,8 +31,6 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression tittle;
 	public final DateExpression dob;
 	public final StringExpression image_name;
-	public final IntegerExpression parishId;
-	public final AssociationExpression parish;
 	public final IntegerExpression sub_countyId;
 	public final AssociationExpression sub_county;
 	public final IntegerExpression countyId;
@@ -45,6 +43,8 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression add_by;
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
+	public final IntegerExpression parishId;
+	public final AssociationExpression parish;
 	public final CollectionExpression finger_print;
 	public final CollectionExpression candidate;
 	
@@ -62,8 +62,6 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		tittle = new StringExpression("tittle", this.getDetachedCriteria());
 		dob = new DateExpression("dob", this.getDetachedCriteria());
 		image_name = new StringExpression("image_name", this.getDetachedCriteria());
-		parishId = new IntegerExpression("parish.parish_id", this.getDetachedCriteria());
-		parish = new AssociationExpression("parish", this.getDetachedCriteria());
 		sub_countyId = new IntegerExpression("sub_county.sub_county_id", this.getDetachedCriteria());
 		sub_county = new AssociationExpression("sub_county", this.getDetachedCriteria());
 		countyId = new IntegerExpression("county.county_id", this.getDetachedCriteria());
@@ -76,6 +74,8 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		add_by = new IntegerExpression("add_by", this.getDetachedCriteria());
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
+		parishId = new IntegerExpression("parish.parish_id", this.getDetachedCriteria());
+		parish = new AssociationExpression("parish", this.getDetachedCriteria());
 		finger_print = new CollectionExpression("finger_print", this.getDetachedCriteria());
 		candidate = new CollectionExpression("candidate", this.getDetachedCriteria());
 	}
@@ -94,8 +94,6 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		tittle = new StringExpression("tittle", this.getDetachedCriteria());
 		dob = new DateExpression("dob", this.getDetachedCriteria());
 		image_name = new StringExpression("image_name", this.getDetachedCriteria());
-		parishId = new IntegerExpression("parish.parish_id", this.getDetachedCriteria());
-		parish = new AssociationExpression("parish", this.getDetachedCriteria());
 		sub_countyId = new IntegerExpression("sub_county.sub_county_id", this.getDetachedCriteria());
 		sub_county = new AssociationExpression("sub_county", this.getDetachedCriteria());
 		countyId = new IntegerExpression("county.county_id", this.getDetachedCriteria());
@@ -108,6 +106,8 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		add_by = new IntegerExpression("add_by", this.getDetachedCriteria());
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
+		parishId = new IntegerExpression("parish.parish_id", this.getDetachedCriteria());
+		parish = new AssociationExpression("parish", this.getDetachedCriteria());
 		finger_print = new CollectionExpression("finger_print", this.getDetachedCriteria());
 		candidate = new CollectionExpression("candidate", this.getDetachedCriteria());
 	}
@@ -120,10 +120,6 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new VillageDetachedCriteria(createCriteria("village"));
 	}
 	
-	public ParishDetachedCriteria createParishCriteria() {
-		return new ParishDetachedCriteria(createCriteria("parish"));
-	}
-	
 	public Sub_countyDetachedCriteria createSub_countyCriteria() {
 		return new Sub_countyDetachedCriteria(createCriteria("sub_county"));
 	}
@@ -134,6 +130,10 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public DistrictDetachedCriteria createDistrictCriteria() {
 		return new DistrictDetachedCriteria(createCriteria("district"));
+	}
+	
+	public ParishDetachedCriteria createParishCriteria() {
+		return new ParishDetachedCriteria(createCriteria("parish"));
 	}
 	
 	public Finger_printDetachedCriteria createFinger_printCriteria() {

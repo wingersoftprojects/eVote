@@ -373,10 +373,6 @@ public class Voter implements Serializable {
 				getVillage().getVoter().remove(this);
 			}
 			
-			if(getParish() != null) {
-				getParish().getVoter().remove(this);
-			}
-			
 			if(getSub_county() != null) {
 				getSub_county().getVoter().remove(this);
 			}
@@ -387,6 +383,10 @@ public class Voter implements Serializable {
 			
 			if(getDistrict() != null) {
 				getDistrict().getVoter().remove(this);
+			}
+			
+			if(getParish() != null) {
+				getParish().getVoter().remove(this);
 			}
 			
 			entities.Finger_print[] lFinger_prints = (entities.Finger_print[])getFinger_print().toArray(new entities.Finger_print[getFinger_print().size()]);
@@ -415,10 +415,6 @@ public class Voter implements Serializable {
 				getVillage().getVoter().remove(this);
 			}
 			
-			if(getParish() != null) {
-				getParish().getVoter().remove(this);
-			}
-			
 			if(getSub_county() != null) {
 				getSub_county().getVoter().remove(this);
 			}
@@ -429,6 +425,10 @@ public class Voter implements Serializable {
 			
 			if(getDistrict() != null) {
 				getDistrict().getVoter().remove(this);
+			}
+			
+			if(getParish() != null) {
+				getParish().getVoter().remove(this);
 			}
 			
 			entities.Finger_print[] lFinger_prints = (entities.Finger_print[])getFinger_print().toArray(new entities.Finger_print[getFinger_print().size()]);
@@ -490,11 +490,6 @@ public class Voter implements Serializable {
 	@Column(name="image_name", nullable=true, length=100)	
 	private String image_name;
 	
-	@ManyToOne(targetEntity=entities.Parish.class, fetch=FetchType.LAZY)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="parish_id", referencedColumnName="parish_id", nullable=false) })	
-	private entities.Parish parish;
-	
 	@ManyToOne(targetEntity=entities.Sub_county.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="sub_county_id", referencedColumnName="sub_county_id", nullable=false) })	
@@ -527,6 +522,11 @@ public class Voter implements Serializable {
 	
 	@Column(name="last_edit_by", nullable=true, length=11)	
 	private Integer last_edit_by;
+	
+	@ManyToOne(targetEntity=entities.Parish.class, fetch=FetchType.LAZY)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
+	@JoinColumns({ @JoinColumn(name="parish_id", referencedColumnName="parish_id") })	
+	private entities.Parish parish;
 	
 	@OneToMany(mappedBy="voter", targetEntity=entities.Finger_print.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	

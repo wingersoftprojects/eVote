@@ -29,8 +29,8 @@ public class Sub_countyDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression add_by;
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
-	public final CollectionExpression parish;
 	public final CollectionExpression voter;
+	public final CollectionExpression parish;
 	
 	public Sub_countyDetachedCriteria() {
 		super(entities.Sub_county.class, entities.Sub_countyCriteria.class);
@@ -44,8 +44,8 @@ public class Sub_countyDetachedCriteria extends AbstractORMDetachedCriteria {
 		add_by = new IntegerExpression("add_by", this.getDetachedCriteria());
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
-		parish = new CollectionExpression("parish", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
+		parish = new CollectionExpression("parish", this.getDetachedCriteria());
 	}
 	
 	public Sub_countyDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -60,20 +60,20 @@ public class Sub_countyDetachedCriteria extends AbstractORMDetachedCriteria {
 		add_by = new IntegerExpression("add_by", this.getDetachedCriteria());
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
-		parish = new CollectionExpression("parish", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
+		parish = new CollectionExpression("parish", this.getDetachedCriteria());
 	}
 	
 	public CountyDetachedCriteria createCountyCriteria() {
 		return new CountyDetachedCriteria(createCriteria("county"));
 	}
 	
-	public ParishDetachedCriteria createParishCriteria() {
-		return new ParishDetachedCriteria(createCriteria("parish"));
-	}
-	
 	public VoterDetachedCriteria createVoterCriteria() {
 		return new VoterDetachedCriteria(createCriteria("voter"));
+	}
+	
+	public ParishDetachedCriteria createParishCriteria() {
+		return new ParishDetachedCriteria(createCriteria("parish"));
 	}
 	
 	public Sub_county uniqueSub_county(PersistentSession session) {

@@ -27,6 +27,8 @@ public class VillageCriteria extends AbstractORMCriteria {
 	public final IntegerExpression add_by;
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
+	public final IntegerExpression parishId;
+	public final AssociationExpression parish;
 	public final CollectionExpression polling_station;
 	public final CollectionExpression voter;
 	
@@ -40,6 +42,8 @@ public class VillageCriteria extends AbstractORMCriteria {
 		add_by = new IntegerExpression("add_by", this);
 		last_edit_date = new TimestampExpression("last_edit_date", this);
 		last_edit_by = new IntegerExpression("last_edit_by", this);
+		parishId = new IntegerExpression("parish.parish_id", this);
+		parish = new AssociationExpression("parish", this);
 		polling_station = new CollectionExpression("polling_station", this);
 		voter = new CollectionExpression("voter", this);
 	}
@@ -50,6 +54,10 @@ public class VillageCriteria extends AbstractORMCriteria {
 	
 	public VillageCriteria() throws PersistentException {
 		this(entities.EVotingPersistentManager.instance().getSession());
+	}
+	
+	public ParishCriteria createParishCriteria() {
+		return new ParishCriteria(createCriteria("parish"));
 	}
 	
 	public Polling_stationCriteria createPolling_stationCriteria() {

@@ -1212,18 +1212,6 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="parish_id">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>parish.parish_id</ReferencedColumn>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>assigned</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
     <Column name="sub_county_id">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
@@ -1320,6 +1308,18 @@
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
       <Length>11</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="parish_id">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>parish.parish_id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
       <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -1645,7 +1645,7 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="subcounty_id">
+    <Column name="sub_county_id">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
       <ReferencedColumn>sub_county.sub_county_id</ReferencedColumn>
@@ -2029,6 +2029,18 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="parish_id">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>parish.parish_id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
   </Entity>
   <ForeignKey name="FKgroup righ766216">
     <ReferenceTable>group right</ReferenceTable>
@@ -2068,16 +2080,6 @@
     </Columns>
     <RefColumns>
       <Column>voter_id</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="FKparish804747">
-    <ReferenceTable>parish</ReferenceTable>
-    <ReferencedTable>sub_county</ReferencedTable>
-    <Columns>
-      <Column>subcounty_id</Column>
-    </Columns>
-    <RefColumns>
-      <Column>sub_county_id</Column>
     </RefColumns>
   </ForeignKey>
   <ForeignKey name="FKsub_county278438">
@@ -2278,6 +2280,26 @@
     </Columns>
     <RefColumns>
       <Column>village_id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKvillage812384">
+    <ReferenceTable>village</ReferenceTable>
+    <ReferencedTable>parish</ReferencedTable>
+    <Columns>
+      <Column>parish_id</Column>
+    </Columns>
+    <RefColumns>
+      <Column>parish_id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKparish729625">
+    <ReferenceTable>parish</ReferenceTable>
+    <ReferencedTable>sub_county</ReferencedTable>
+    <Columns>
+      <Column>sub_county_id</Column>
+    </Columns>
+    <RefColumns>
+      <Column>sub_county_id</Column>
     </RefColumns>
   </ForeignKey>
 </Model>

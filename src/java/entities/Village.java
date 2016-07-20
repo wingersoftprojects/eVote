@@ -365,6 +365,10 @@ public class Village implements Serializable {
 	
 	public boolean deleteAndDissociate()throws PersistentException {
 		try {
+			if(getParish() != null) {
+				getParish().getVillage().remove(this);
+			}
+			
 			entities.Polling_station[] lPolling_stations = (entities.Polling_station[])getPolling_station().toArray(new entities.Polling_station[getPolling_station().size()]);
 			for(int i = 0; i < lPolling_stations.length; i++) {
 				lPolling_stations[i].setVillage(null);
@@ -383,6 +387,10 @@ public class Village implements Serializable {
 	
 	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
 		try {
+			if(getParish() != null) {
+				getParish().getVillage().remove(this);
+			}
+			
 			entities.Polling_station[] lPolling_stations = (entities.Polling_station[])getPolling_station().toArray(new entities.Polling_station[getPolling_station().size()]);
 			for(int i = 0; i < lPolling_stations.length; i++) {
 				lPolling_stations[i].setVillage(null);
@@ -430,6 +438,11 @@ public class Village implements Serializable {
 	
 	@Column(name="last_edit_by", nullable=true, length=11)	
 	private Integer last_edit_by;
+	
+	@ManyToOne(targetEntity=entities.Parish.class, fetch=FetchType.LAZY)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
+	@JoinColumns({ @JoinColumn(name="parish_id", referencedColumnName="parish_id") })	
+	private entities.Parish parish;
 	
 	@OneToMany(mappedBy="village", targetEntity=entities.Polling_station.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
@@ -519,6 +532,14 @@ public class Village implements Serializable {
 	
 	public Integer getLast_edit_by() {
 		return last_edit_by;
+	}
+	
+	public void setParish(entities.Parish value) {
+		this.parish = value;
+	}
+	
+	public entities.Parish getParish() {
+		return parish;
 	}
 	
 	public void setPolling_station(java.util.Set value) {

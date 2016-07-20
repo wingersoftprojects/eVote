@@ -365,13 +365,13 @@ public class Group_detail implements Serializable {
 	
 	public boolean deleteAndDissociate()throws PersistentException {
 		try {
-			entities.Group_user[] lGroup_users = (entities.Group_user[])getGroup_user().toArray(new entities.Group_user[getGroup_user().size()]);
-			for(int i = 0; i < lGroup_users.length; i++) {
-				lGroup_users[i].setGroup(null);
-			}
 			entities.Group_right[] lGroup_rights = (entities.Group_right[])getGroup_right().toArray(new entities.Group_right[getGroup_right().size()]);
 			for(int i = 0; i < lGroup_rights.length; i++) {
 				lGroup_rights[i].setGroup(null);
+			}
+			entities.Group_user[] lGroup_users = (entities.Group_user[])getGroup_user().toArray(new entities.Group_user[getGroup_user().size()]);
+			for(int i = 0; i < lGroup_users.length; i++) {
+				lGroup_users[i].setGroup(null);
 			}
 			return delete();
 		}
@@ -383,13 +383,13 @@ public class Group_detail implements Serializable {
 	
 	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
 		try {
-			entities.Group_user[] lGroup_users = (entities.Group_user[])getGroup_user().toArray(new entities.Group_user[getGroup_user().size()]);
-			for(int i = 0; i < lGroup_users.length; i++) {
-				lGroup_users[i].setGroup(null);
-			}
 			entities.Group_right[] lGroup_rights = (entities.Group_right[])getGroup_right().toArray(new entities.Group_right[getGroup_right().size()]);
 			for(int i = 0; i < lGroup_rights.length; i++) {
 				lGroup_rights[i].setGroup(null);
+			}
+			entities.Group_user[] lGroup_users = (entities.Group_user[])getGroup_user().toArray(new entities.Group_user[getGroup_user().size()]);
+			for(int i = 0; i < lGroup_users.length; i++) {
+				lGroup_users[i].setGroup(null);
 			}
 			try {
 				session.delete(this);
@@ -431,15 +431,15 @@ public class Group_detail implements Serializable {
 	@Column(name="last_edit_by", nullable=true, length=11)	
 	private Integer last_edit_by;
 	
-	@OneToMany(mappedBy="group", targetEntity=entities.Group_user.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
-	private java.util.Set group_user = new java.util.HashSet();
-	
 	@OneToMany(mappedBy="group", targetEntity=entities.Group_right.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set group_right = new java.util.HashSet();
+	
+	@OneToMany(mappedBy="group", targetEntity=entities.Group_user.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
+	private java.util.Set group_user = new java.util.HashSet();
 	
 	private void setGroup_detail_id(int value) {
 		this.group_detail_id = value;
@@ -521,21 +521,21 @@ public class Group_detail implements Serializable {
 		return last_edit_by;
 	}
 	
-	public void setGroup_user(java.util.Set value) {
-		this.group_user = value;
-	}
-	
-	public java.util.Set getGroup_user() {
-		return group_user;
-	}
-	
-	
 	public void setGroup_right(java.util.Set value) {
 		this.group_right = value;
 	}
 	
 	public java.util.Set getGroup_right() {
 		return group_right;
+	}
+	
+	
+	public void setGroup_user(java.util.Set value) {
+		this.group_user = value;
+	}
+	
+	public java.util.Set getGroup_user() {
+		return group_user;
 	}
 	
 	

@@ -27,6 +27,8 @@ public class VillageDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression add_by;
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
+	public final IntegerExpression parishId;
+	public final AssociationExpression parish;
 	public final CollectionExpression polling_station;
 	public final CollectionExpression voter;
 	
@@ -40,6 +42,8 @@ public class VillageDetachedCriteria extends AbstractORMDetachedCriteria {
 		add_by = new IntegerExpression("add_by", this.getDetachedCriteria());
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
+		parishId = new IntegerExpression("parish.parish_id", this.getDetachedCriteria());
+		parish = new AssociationExpression("parish", this.getDetachedCriteria());
 		polling_station = new CollectionExpression("polling_station", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
 	}
@@ -54,8 +58,14 @@ public class VillageDetachedCriteria extends AbstractORMDetachedCriteria {
 		add_by = new IntegerExpression("add_by", this.getDetachedCriteria());
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
+		parishId = new IntegerExpression("parish.parish_id", this.getDetachedCriteria());
+		parish = new AssociationExpression("parish", this.getDetachedCriteria());
 		polling_station = new CollectionExpression("polling_station", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
+	}
+	
+	public ParishDetachedCriteria createParishCriteria() {
+		return new ParishDetachedCriteria(createCriteria("parish"));
 	}
 	
 	public Polling_stationDetachedCriteria createPolling_stationCriteria() {

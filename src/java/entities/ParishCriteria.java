@@ -20,8 +20,8 @@ import org.orm.criteria.*;
 
 public class ParishCriteria extends AbstractORMCriteria {
 	public final IntegerExpression parish_id;
-	public final IntegerExpression subcountyId;
-	public final AssociationExpression subcounty;
+	public final IntegerExpression sub_countyId;
+	public final AssociationExpression sub_county;
 	public final StringExpression parish_name;
 	public final IntegerExpression is_deleted;
 	public final IntegerExpression is_active;
@@ -30,12 +30,13 @@ public class ParishCriteria extends AbstractORMCriteria {
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
 	public final CollectionExpression voter;
+	public final CollectionExpression village;
 	
 	public ParishCriteria(Criteria criteria) {
 		super(criteria);
 		parish_id = new IntegerExpression("parish_id", this);
-		subcountyId = new IntegerExpression("subcounty.sub_county_id", this);
-		subcounty = new AssociationExpression("subcounty", this);
+		sub_countyId = new IntegerExpression("sub_county.sub_county_id", this);
+		sub_county = new AssociationExpression("sub_county", this);
 		parish_name = new StringExpression("parish_name", this);
 		is_deleted = new IntegerExpression("is_deleted", this);
 		is_active = new IntegerExpression("is_active", this);
@@ -44,6 +45,7 @@ public class ParishCriteria extends AbstractORMCriteria {
 		last_edit_date = new TimestampExpression("last_edit_date", this);
 		last_edit_by = new IntegerExpression("last_edit_by", this);
 		voter = new CollectionExpression("voter", this);
+		village = new CollectionExpression("village", this);
 	}
 	
 	public ParishCriteria(PersistentSession session) {
@@ -54,12 +56,16 @@ public class ParishCriteria extends AbstractORMCriteria {
 		this(entities.EVotingPersistentManager.instance().getSession());
 	}
 	
-	public Sub_countyCriteria createSubcountyCriteria() {
-		return new Sub_countyCriteria(createCriteria("subcounty"));
+	public Sub_countyCriteria createSub_countyCriteria() {
+		return new Sub_countyCriteria(createCriteria("sub_county"));
 	}
 	
 	public VoterCriteria createVoterCriteria() {
 		return new VoterCriteria(createCriteria("voter"));
+	}
+	
+	public VillageCriteria createVillageCriteria() {
+		return new VillageCriteria(createCriteria("village"));
 	}
 	
 	public Parish uniqueParish() {

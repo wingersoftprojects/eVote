@@ -38,6 +38,7 @@ public class EVotingPersistentManager extends PersistentManager {
 		Configuration configuration = new Configuration();
 		configuration.addAnnotatedClass(entities.Group_detail.class);
 		configuration.addAnnotatedClass(entities.User_detail.class);
+		configuration.addAnnotatedClass(entities.Group_right.class);
 		configuration.addAnnotatedClass(entities.Vote.class);
 		configuration.addAnnotatedClass(entities.Candidate.class);
 		configuration.addAnnotatedClass(entities.Post.class);
@@ -52,7 +53,6 @@ public class EVotingPersistentManager extends PersistentManager {
 		configuration.addAnnotatedClass(entities.Finger_print.class);
 		configuration.addAnnotatedClass(entities.Group_user.class);
 		configuration.addAnnotatedClass(entities.Village.class);
-		configuration.addAnnotatedClass(entities.Group_right.class);
 		configuration.buildMappings();
 		return configuration;
 	}

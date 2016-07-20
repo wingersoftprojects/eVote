@@ -31,8 +31,6 @@ public class VoterCriteria extends AbstractORMCriteria {
 	public final StringExpression tittle;
 	public final DateExpression dob;
 	public final StringExpression image_name;
-	public final IntegerExpression parishId;
-	public final AssociationExpression parish;
 	public final IntegerExpression sub_countyId;
 	public final AssociationExpression sub_county;
 	public final IntegerExpression countyId;
@@ -45,6 +43,8 @@ public class VoterCriteria extends AbstractORMCriteria {
 	public final IntegerExpression add_by;
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
+	public final IntegerExpression parishId;
+	public final AssociationExpression parish;
 	public final CollectionExpression finger_print;
 	public final CollectionExpression candidate;
 	
@@ -62,8 +62,6 @@ public class VoterCriteria extends AbstractORMCriteria {
 		tittle = new StringExpression("tittle", this);
 		dob = new DateExpression("dob", this);
 		image_name = new StringExpression("image_name", this);
-		parishId = new IntegerExpression("parish.parish_id", this);
-		parish = new AssociationExpression("parish", this);
 		sub_countyId = new IntegerExpression("sub_county.sub_county_id", this);
 		sub_county = new AssociationExpression("sub_county", this);
 		countyId = new IntegerExpression("county.county_id", this);
@@ -76,6 +74,8 @@ public class VoterCriteria extends AbstractORMCriteria {
 		add_by = new IntegerExpression("add_by", this);
 		last_edit_date = new TimestampExpression("last_edit_date", this);
 		last_edit_by = new IntegerExpression("last_edit_by", this);
+		parishId = new IntegerExpression("parish.parish_id", this);
+		parish = new AssociationExpression("parish", this);
 		finger_print = new CollectionExpression("finger_print", this);
 		candidate = new CollectionExpression("candidate", this);
 	}
@@ -96,10 +96,6 @@ public class VoterCriteria extends AbstractORMCriteria {
 		return new VillageCriteria(createCriteria("village"));
 	}
 	
-	public ParishCriteria createParishCriteria() {
-		return new ParishCriteria(createCriteria("parish"));
-	}
-	
 	public Sub_countyCriteria createSub_countyCriteria() {
 		return new Sub_countyCriteria(createCriteria("sub_county"));
 	}
@@ -110,6 +106,10 @@ public class VoterCriteria extends AbstractORMCriteria {
 	
 	public DistrictCriteria createDistrictCriteria() {
 		return new DistrictCriteria(createCriteria("district"));
+	}
+	
+	public ParishCriteria createParishCriteria() {
+		return new ParishCriteria(createCriteria("parish"));
 	}
 	
 	public Finger_printCriteria createFinger_printCriteria() {

@@ -365,13 +365,17 @@ public class Parish implements Serializable {
 	
 	public boolean deleteAndDissociate()throws PersistentException {
 		try {
-			if(getSubcounty() != null) {
-				getSubcounty().getParish().remove(this);
+			if(getSub_county() != null) {
+				getSub_county().getParish().remove(this);
 			}
 			
 			entities.Voter[] lVoters = (entities.Voter[])getVoter().toArray(new entities.Voter[getVoter().size()]);
 			for(int i = 0; i < lVoters.length; i++) {
 				lVoters[i].setParish(null);
+			}
+			entities.Village[] lVillages = (entities.Village[])getVillage().toArray(new entities.Village[getVillage().size()]);
+			for(int i = 0; i < lVillages.length; i++) {
+				lVillages[i].setParish(null);
 			}
 			return delete();
 		}
@@ -383,13 +387,17 @@ public class Parish implements Serializable {
 	
 	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
 		try {
-			if(getSubcounty() != null) {
-				getSubcounty().getParish().remove(this);
+			if(getSub_county() != null) {
+				getSub_county().getParish().remove(this);
 			}
 			
 			entities.Voter[] lVoters = (entities.Voter[])getVoter().toArray(new entities.Voter[getVoter().size()]);
 			for(int i = 0; i < lVoters.length; i++) {
 				lVoters[i].setParish(null);
+			}
+			entities.Village[] lVillages = (entities.Village[])getVillage().toArray(new entities.Village[getVillage().size()]);
+			for(int i = 0; i < lVillages.length; i++) {
+				lVillages[i].setParish(null);
 			}
 			try {
 				session.delete(this);
@@ -412,8 +420,8 @@ public class Parish implements Serializable {
 	
 	@ManyToOne(targetEntity=entities.Sub_county.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="subcounty_id", referencedColumnName="sub_county_id", nullable=false) })	
-	private entities.Sub_county subcounty;
+	@JoinColumns({ @JoinColumn(name="sub_county_id", referencedColumnName="sub_county_id", nullable=false) })	
+	private entities.Sub_county sub_county;
 	
 	@Column(name="parish_name", nullable=false, length=100)	
 	private String parish_name;
@@ -440,6 +448,11 @@ public class Parish implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set voter = new java.util.HashSet();
+	
+	@OneToMany(mappedBy="parish", targetEntity=entities.Village.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
+	private java.util.Set village = new java.util.HashSet();
 	
 	private void setParish_id(int value) {
 		this.parish_id = value;
@@ -521,12 +534,12 @@ public class Parish implements Serializable {
 		return last_edit_by;
 	}
 	
-	public void setSubcounty(entities.Sub_county value) {
-		this.subcounty = value;
+	public void setSub_county(entities.Sub_county value) {
+		this.sub_county = value;
 	}
 	
-	public entities.Sub_county getSubcounty() {
-		return subcounty;
+	public entities.Sub_county getSub_county() {
+		return sub_county;
 	}
 	
 	public void setVoter(java.util.Set value) {
@@ -535,6 +548,15 @@ public class Parish implements Serializable {
 	
 	public java.util.Set getVoter() {
 		return voter;
+	}
+	
+	
+	public void setVillage(java.util.Set value) {
+		this.village = value;
+	}
+	
+	public java.util.Set getVillage() {
+		return village;
 	}
 	
 	

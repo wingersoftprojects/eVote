@@ -20,8 +20,8 @@ import org.orm.criteria.*;
 
 public class ParishDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression parish_id;
-	public final IntegerExpression subcountyId;
-	public final AssociationExpression subcounty;
+	public final IntegerExpression sub_countyId;
+	public final AssociationExpression sub_county;
 	public final StringExpression parish_name;
 	public final IntegerExpression is_deleted;
 	public final IntegerExpression is_active;
@@ -30,12 +30,13 @@ public class ParishDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
 	public final CollectionExpression voter;
+	public final CollectionExpression village;
 	
 	public ParishDetachedCriteria() {
 		super(entities.Parish.class, entities.ParishCriteria.class);
 		parish_id = new IntegerExpression("parish_id", this.getDetachedCriteria());
-		subcountyId = new IntegerExpression("subcounty.sub_county_id", this.getDetachedCriteria());
-		subcounty = new AssociationExpression("subcounty", this.getDetachedCriteria());
+		sub_countyId = new IntegerExpression("sub_county.sub_county_id", this.getDetachedCriteria());
+		sub_county = new AssociationExpression("sub_county", this.getDetachedCriteria());
 		parish_name = new StringExpression("parish_name", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
 		is_active = new IntegerExpression("is_active", this.getDetachedCriteria());
@@ -44,13 +45,14 @@ public class ParishDetachedCriteria extends AbstractORMDetachedCriteria {
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
+		village = new CollectionExpression("village", this.getDetachedCriteria());
 	}
 	
 	public ParishDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, entities.ParishCriteria.class);
 		parish_id = new IntegerExpression("parish_id", this.getDetachedCriteria());
-		subcountyId = new IntegerExpression("subcounty.sub_county_id", this.getDetachedCriteria());
-		subcounty = new AssociationExpression("subcounty", this.getDetachedCriteria());
+		sub_countyId = new IntegerExpression("sub_county.sub_county_id", this.getDetachedCriteria());
+		sub_county = new AssociationExpression("sub_county", this.getDetachedCriteria());
 		parish_name = new StringExpression("parish_name", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
 		is_active = new IntegerExpression("is_active", this.getDetachedCriteria());
@@ -59,14 +61,19 @@ public class ParishDetachedCriteria extends AbstractORMDetachedCriteria {
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
+		village = new CollectionExpression("village", this.getDetachedCriteria());
 	}
 	
-	public Sub_countyDetachedCriteria createSubcountyCriteria() {
-		return new Sub_countyDetachedCriteria(createCriteria("subcounty"));
+	public Sub_countyDetachedCriteria createSub_countyCriteria() {
+		return new Sub_countyDetachedCriteria(createCriteria("sub_county"));
 	}
 	
 	public VoterDetachedCriteria createVoterCriteria() {
 		return new VoterDetachedCriteria(createCriteria("voter"));
+	}
+	
+	public VillageDetachedCriteria createVillageCriteria() {
+		return new VillageDetachedCriteria(createCriteria("village"));
 	}
 	
 	public Parish uniqueParish(PersistentSession session) {

@@ -29,8 +29,8 @@ public class Sub_countyCriteria extends AbstractORMCriteria {
 	public final IntegerExpression add_by;
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
-	public final CollectionExpression parish;
 	public final CollectionExpression voter;
+	public final CollectionExpression parish;
 	
 	public Sub_countyCriteria(Criteria criteria) {
 		super(criteria);
@@ -44,8 +44,8 @@ public class Sub_countyCriteria extends AbstractORMCriteria {
 		add_by = new IntegerExpression("add_by", this);
 		last_edit_date = new TimestampExpression("last_edit_date", this);
 		last_edit_by = new IntegerExpression("last_edit_by", this);
-		parish = new CollectionExpression("parish", this);
 		voter = new CollectionExpression("voter", this);
+		parish = new CollectionExpression("parish", this);
 	}
 	
 	public Sub_countyCriteria(PersistentSession session) {
@@ -60,12 +60,12 @@ public class Sub_countyCriteria extends AbstractORMCriteria {
 		return new CountyCriteria(createCriteria("county"));
 	}
 	
-	public ParishCriteria createParishCriteria() {
-		return new ParishCriteria(createCriteria("parish"));
-	}
-	
 	public VoterCriteria createVoterCriteria() {
 		return new VoterCriteria(createCriteria("voter"));
+	}
+	
+	public ParishCriteria createParishCriteria() {
+		return new ParishCriteria(createCriteria("parish"));
 	}
 	
 	public Sub_county uniqueSub_county() {
