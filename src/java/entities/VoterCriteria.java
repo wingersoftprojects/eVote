@@ -20,7 +20,6 @@ import org.orm.criteria.*;
 
 public class VoterCriteria extends AbstractORMCriteria {
 	public final IntegerExpression voter_id;
-	public final StringExpression voter_name;
 	public final IntegerExpression polling_stationId;
 	public final AssociationExpression polling_station;
 	public final IntegerExpression villageId;
@@ -31,6 +30,7 @@ public class VoterCriteria extends AbstractORMCriteria {
 	public final StringExpression tittle;
 	public final DateExpression dob;
 	public final StringExpression image_name;
+	public final BlobExpression image_blob;
 	public final IntegerExpression sub_countyId;
 	public final AssociationExpression sub_county;
 	public final IntegerExpression countyId;
@@ -51,7 +51,6 @@ public class VoterCriteria extends AbstractORMCriteria {
 	public VoterCriteria(Criteria criteria) {
 		super(criteria);
 		voter_id = new IntegerExpression("voter_id", this);
-		voter_name = new StringExpression("voter_name", this);
 		polling_stationId = new IntegerExpression("polling_station.polling_station_id", this);
 		polling_station = new AssociationExpression("polling_station", this);
 		villageId = new IntegerExpression("village.village_id", this);
@@ -62,6 +61,7 @@ public class VoterCriteria extends AbstractORMCriteria {
 		tittle = new StringExpression("tittle", this);
 		dob = new DateExpression("dob", this);
 		image_name = new StringExpression("image_name", this);
+		image_blob = new BlobExpression("image_blob", this);
 		sub_countyId = new IntegerExpression("sub_county.sub_county_id", this);
 		sub_county = new AssociationExpression("sub_county", this);
 		countyId = new IntegerExpression("county.county_id", this);

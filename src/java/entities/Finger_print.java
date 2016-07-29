@@ -402,8 +402,11 @@ public class Finger_print implements Serializable {
 	@org.hibernate.annotations.GenericGenerator(name="ENTITIES_FINGER_PRINT_FINGER_PRINT_ID_GENERATOR", strategy="native")	
 	private int finger_print_id;
 	
-	@Column(name="fingerprint_name", nullable=true, length=50)	
+	@Column(name="fingerprint_name", nullable=true, length=100)	
 	private String fingerprint_name;
+	
+	@Column(name="fingerprint_blob", nullable=true)	
+	private java.sql.Blob fingerprint_blob;
 	
 	@ManyToOne(targetEntity=entities.Voter.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
@@ -446,6 +449,14 @@ public class Finger_print implements Serializable {
 	
 	public String getFingerprint_name() {
 		return fingerprint_name;
+	}
+	
+	public void setFingerprint_blob(java.sql.Blob value) {
+		this.fingerprint_blob = value;
+	}
+	
+	public java.sql.Blob getFingerprint_blob() {
+		return fingerprint_blob;
 	}
 	
 	public void setIs_deleted(int value) {

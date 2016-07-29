@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./layout.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:event listener="#{countryBean.init()}" type="preRenderView" />
+            <f:event listener="#{districtBean.init()}" type="preRenderView" />
+            <f:event listener="#{sub_countyBean.init()}" type="preRenderView" />
+            <f:event listener="#{countyBean.init()}" type="preRenderView" />
+            <f:event listener="#{parishBean.init()}" type="preRenderView" />
+            <f:event listener="#{countryBean.initializelist()}" type="preRenderView" />
+            <f:event listener="#{districtBean.initializelist()}" type="preRenderView" />
+            <f:event listener="#{countyBean.initializelist()}" type="preRenderView" />
+            <f:event listener="#{sub_countyBean.initializelist()}" type="preRenderView" />
+            <f:event listener="#{parishBean.initializelist()}" type="preRenderView" />
+            <f:event listener="#{villageBean.init()}" type="preRenderView" />
+            <f:event listener="#{villageBean.initializelist()}" type="preRenderView" />
+            <f:event listener="#{polling_stationBean.init()}" type="preRenderView" />
+            <f:event listener="#{polling_stationBean.initializelist()}" type="preRenderView" />
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <p:growl id="messages" showDetail="true" />
+            <p:panelGrid columns="1">
+                <p:fieldset legend="Polling Station">
+                    <p:panelGrid id="panel_village" columns="2">
+                        <p:outputLabel for="district1" value="District:" />
+                        <p:selectOneMenu id="district1" value="#{countyBean.district}" style="width:121px" required="true" requiredMessage="District field is Required" converter="districtConverter">
+                            <f:selectItem itemLabel="" />
+                            <f:selectItems value="#{districtBean.tsActive}" var="item" itemLabel="#{item.district_name}" itemValue="#{item}"/>
+                            <p:ajax process="@this" update="county1"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="county1" value="County:" />
+                        <p:selectOneMenu id="county1" value="#{sub_countyBean.county}" style="width:121px" required="true" requiredMessage="County field is Required" converter="countyConverter">
+                            <f:selectItem itemLabel="" />
+                            <f:selectItems value="#{countyBean.getts()}" var="item" itemLabel="#{item.county_name}" itemValue="#{item}"/>
+                            <p:ajax process="@this" update="sub_county1"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="sub_county1" value="Sub County:" />
+                        <p:selectOneMenu id="sub_county1" value="#{parishBean.sub_county}" style="width:121px" required="true" requiredMessage="Sub county field is Required" converter="sub_countyConverter">
+                            <f:selectItem itemLabel="" />
+                            <f:selectItems value="#{sub_countyBean.getts()}" var="item" itemLabel="#{item.sub_county_name}" itemValue="#{item}"/>
+                            <p:ajax process="@this" update="parish1"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="parish1" value="Parish:" />
+                        <p:selectOneMenu id="parish1" value="#{villageBean.parish}" style="width:121px" required="true" requiredMessage="Parish field is Required" converter="parishConverter">
+                            <f:selectItem itemLabel="" />
+                            <f:selectItems value="#{parishBean.getts(parishBean.sub_county)}" var="item" itemLabel="#{item.parish_name}" itemValue="#{item}"/>
+                            <p:ajax process="@this" update="village1"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="village1" value="Village:" />
+                        <p:selectOneMenu id="village1" value="#{polling_stationBean.selected.village}" style="width:121px" required="true" requiredMessage="Village field is Required" converter="villageConverter">
+                            <f:selectItem itemLabel="" />
+                            <f:selectItems value="#{villageBean.getts(villageBean.parish)}" var="item" itemLabel="#{item.village_name}" itemValue="#{item}"/>
+                            <p:ajax process="@this"/>
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="Polling Station:" for="polling_station_name1"/>
+                        <p:inputText id="polling_station_name1" value="#{polling_stationBean.selected.poll_station_name}" required="true" requiredMessage="Polling Station Name is required"/>
+                        <p:outputLabel value="Is Active?:" for="is_active1"/>
+                        <p:selectOneMenu id="is_active1" value="#{polling_stationBean.selected.is_active}" required="true" requiredMessage="Is active field is required">
+                            <f:selectItem itemLabel="Select One" itemValue="" />
+                            <f:selectItem itemLabel="Yes" itemValue="1" />
+                            <f:selectItem itemLabel="No" itemValue="0" />
+                        </p:selectOneMenu>
+                        <p:commandButton value="SAVE" process="@this,district1,county1,sub_county1,parish1,village1,polling_station_name1,is_active1" action="#{polling_stationBean.save(loginBean.user_detail.user_detail_id)}" icon="ui-icon-disk" update="@form"/>
+                        <p:commandButton value="CLEAR" icon="ui-icon-cancel" action="#{polling_stationBean.cancel()}" update="@form" process="@this"/>
+                    </p:panelGrid>
+                </p:fieldset>
+                <p:dataTable id="poll_station_table" value="#{polling_stationBean.ts}" var="item" rows="10"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="1,10,11,30,10,100">
+                    <p:column headerText="Country">
+                        #{item.village.parish.sub_county.county.district.country.country_name}
+                    </p:column>
+                    <p:column headerText="District">
+                        #{item.village.parish.sub_county.county.district.district_name}
+                    </p:column>
+                    <p:column headerText="Parish Name">
+                        #{item.village.parish.parish_name}
+                    </p:column>
+                    <p:column headerText="Village">
+                        #{item.village.village_name}
+                    </p:column>
+                    <p:column headerText="Polling Station">
+                        #{item.poll_station_name}
+                    </p:column>
+                    <p:column headerText="Active?">
+                        #{generalUtilities.convertYesNo(item.is_active)}
+                    </p:column>
+                    <p:column headerText="">
+                        <p:commandButton value="Edit" action="#{polling_stationBean.edit(item)}" process="@this" update="@form" icon="ui-icon-search" title="View">
+                        </p:commandButton>
+                        <p:commandButton value="Delete" actionListener="#{polling_stationBean.delete(item)}" update="@form" process="@this">
+                            <p:confirm header="Confirmation" message="Are you sure you want to delete?" icon="ui-icon-alert" />
+                        </p:commandButton>
+
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                    </p:column>
+                </p:dataTable>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

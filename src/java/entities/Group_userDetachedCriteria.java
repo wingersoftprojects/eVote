@@ -22,8 +22,8 @@ public class Group_userDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression group_user_id;
 	public final IntegerExpression user_detailId;
 	public final AssociationExpression user_detail;
-	public final IntegerExpression groupId;
-	public final AssociationExpression group;
+	public final IntegerExpression group_detailId;
+	public final AssociationExpression group_detail;
 	public final IntegerExpression is_deleted;
 	public final IntegerExpression is_active;
 	public final TimestampExpression add_date;
@@ -36,8 +36,8 @@ public class Group_userDetachedCriteria extends AbstractORMDetachedCriteria {
 		group_user_id = new IntegerExpression("group_user_id", this.getDetachedCriteria());
 		user_detailId = new IntegerExpression("user_detail.user_detail_id", this.getDetachedCriteria());
 		user_detail = new AssociationExpression("user_detail", this.getDetachedCriteria());
-		groupId = new IntegerExpression("group.group_detail_id", this.getDetachedCriteria());
-		group = new AssociationExpression("group", this.getDetachedCriteria());
+		group_detailId = new IntegerExpression("group_detail.group_detail_id", this.getDetachedCriteria());
+		group_detail = new AssociationExpression("group_detail", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
 		is_active = new IntegerExpression("is_active", this.getDetachedCriteria());
 		add_date = new TimestampExpression("add_date", this.getDetachedCriteria());
@@ -51,8 +51,8 @@ public class Group_userDetachedCriteria extends AbstractORMDetachedCriteria {
 		group_user_id = new IntegerExpression("group_user_id", this.getDetachedCriteria());
 		user_detailId = new IntegerExpression("user_detail.user_detail_id", this.getDetachedCriteria());
 		user_detail = new AssociationExpression("user_detail", this.getDetachedCriteria());
-		groupId = new IntegerExpression("group.group_detail_id", this.getDetachedCriteria());
-		group = new AssociationExpression("group", this.getDetachedCriteria());
+		group_detailId = new IntegerExpression("group_detail.group_detail_id", this.getDetachedCriteria());
+		group_detail = new AssociationExpression("group_detail", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
 		is_active = new IntegerExpression("is_active", this.getDetachedCriteria());
 		add_date = new TimestampExpression("add_date", this.getDetachedCriteria());
@@ -65,8 +65,8 @@ public class Group_userDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new User_detailDetachedCriteria(createCriteria("user_detail"));
 	}
 	
-	public Group_detailDetachedCriteria createGroupCriteria() {
-		return new Group_detailDetachedCriteria(createCriteria("group"));
+	public Group_detailDetachedCriteria createGroup_detailCriteria() {
+		return new Group_detailDetachedCriteria(createCriteria("group_detail"));
 	}
 	
 	public Group_user uniqueGroup_user(PersistentSession session) {

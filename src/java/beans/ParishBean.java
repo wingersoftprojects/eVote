@@ -63,5 +63,21 @@ public class ParishBean extends AbstractBean<Parish> implements Serializable {
         }
         return temp;
     }
+    
+    private Sub_county sub_county;
+
+    /**
+     * @return the sub_county
+     */
+    public Sub_county getSub_county() {
+        return sub_county;
+    }
+
+    /**
+     * @param sub_county the sub_county to set
+     */
+    public void setSub_county(Sub_county sub_county) {
+        this.sub_county = sub_county;
+    }
 
 }

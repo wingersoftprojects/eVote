@@ -373,10 +373,6 @@ public class Polling_station implements Serializable {
 			for(int i = 0; i < lVoters.length; i++) {
 				lVoters[i].setPolling_station(null);
 			}
-			entities.Candidate[] lCandidates = (entities.Candidate[])getCandidate().toArray(new entities.Candidate[getCandidate().size()]);
-			for(int i = 0; i < lCandidates.length; i++) {
-				lCandidates[i].setPoll_station(null);
-			}
 			return delete();
 		}
 		catch(Exception e) {
@@ -394,10 +390,6 @@ public class Polling_station implements Serializable {
 			entities.Voter[] lVoters = (entities.Voter[])getVoter().toArray(new entities.Voter[getVoter().size()]);
 			for(int i = 0; i < lVoters.length; i++) {
 				lVoters[i].setPolling_station(null);
-			}
-			entities.Candidate[] lCandidates = (entities.Candidate[])getCandidate().toArray(new entities.Candidate[getCandidate().size()]);
-			for(int i = 0; i < lCandidates.length; i++) {
-				lCandidates[i].setPoll_station(null);
 			}
 			try {
 				session.delete(this);
@@ -448,11 +440,6 @@ public class Polling_station implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set voter = new java.util.HashSet();
-	
-	@OneToMany(mappedBy="poll_station", targetEntity=entities.Candidate.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
-	private java.util.Set candidate = new java.util.HashSet();
 	
 	private void setPolling_station_id(int value) {
 		this.polling_station_id = value;
@@ -548,15 +535,6 @@ public class Polling_station implements Serializable {
 	
 	public java.util.Set getVoter() {
 		return voter;
-	}
-	
-	
-	public void setCandidate(java.util.Set value) {
-		this.candidate = value;
-	}
-	
-	public java.util.Set getCandidate() {
-		return candidate;
 	}
 	
 	

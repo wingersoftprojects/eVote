@@ -10,30 +10,28 @@
     <h:body>
         <h:form>  
             <p:menubar>
-                <p:submenu label="VOTERS REGISTER" icon="ui-icon-document">
-                    <p:menuitem value="Register New Voter" url="#" />
-                    <p:menuitem value="View Voters Register" url="#" />
-                </p:submenu>
-
-                <p:submenu label="CANDIDATE" icon="ui-icon-pencil">
-                    <p:menuitem value="Register New Candidate" url="#" icon="ui-icon-arrowreturnthick-1-w" />
-                    <p:menuitem value="View Candidates" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                <p:submenu label="VOTE RESULTS" icon="ui-icon-circle-check">
+                    <p:menuitem value="View Results" action="home?faces-redirect=true" icon="ui-icon-circle-check" />
                 </p:submenu>
                 
-                <p:submenu label="LOCATION" icon="ui-icon-pencil">
-                    <p:menuitem value="Location" action="locationdetail?faces-redirect=true" icon="ui-icon-arrowreturnthick-1-w" />
-                    <p:menuitem value="Station" action="#" icon="ui-icon-arrowreturnthick-1-e" />
+                <p:submenu label="VOTER REGISTER" icon="ui-icon-person">
+                    <p:menuitem value="Voter Details" action="voter?faces-redirect=true" icon="ui-icon-document" />
+                </p:submenu>
+
+                <p:submenu label="CANDIDATE REGISTER" icon="ui-icon-person">
+                    <p:menuitem value="Candidate Details" action="candidate?faces-redirect=true" icon="ui-icon-pencil" />
+                </p:submenu>
+                
+                <p:submenu label="LOCATION" icon="ui-icon-gear">
+                    <p:menuitem value="Location" action="locationdetail?faces-redirect=true" icon="ui-icon-gear" />
+                    <p:menuitem value="Poll Station" action="pollingstation?faces-redirect=true" icon="ui-icon-gear" />
                 </p:submenu>
 
                 <p:submenu label="USERS" icon="ui-icon-person">
-                    <p:menuitem value="Group Details" action="groupdetail?faces-redirect=true">
+                    <p:menuitem value="Group Details" action="groupdetail?faces-redirect=true" icon="ui-icon-person">
                     </p:menuitem> 
-                    <p:menuitem value="User Details" action="userdetail?faces-redirect=true">
+                    <p:menuitem value="User Details" action="userdetail?faces-redirect=true" icon="ui-icon-person">
                     </p:menuitem>  
-                </p:submenu>
-                <p:submenu label="Help" icon="ui-icon-help">
-                    <p:menuitem value="Help Contents" url="#" />
-                    <p:menuitem value="About" url="#" />
                 </p:submenu>
                 <f:facet name="options">
                     <p:menubar>

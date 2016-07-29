@@ -21,6 +21,7 @@ import org.orm.criteria.*;
 public class Finger_printCriteria extends AbstractORMCriteria {
 	public final IntegerExpression finger_print_id;
 	public final StringExpression fingerprint_name;
+	public final BlobExpression fingerprint_blob;
 	public final IntegerExpression voterId;
 	public final AssociationExpression voter;
 	public final IntegerExpression is_deleted;
@@ -34,6 +35,7 @@ public class Finger_printCriteria extends AbstractORMCriteria {
 		super(criteria);
 		finger_print_id = new IntegerExpression("finger_print_id", this);
 		fingerprint_name = new StringExpression("fingerprint_name", this);
+		fingerprint_blob = new BlobExpression("fingerprint_blob", this);
 		voterId = new IntegerExpression("voter.voter_id", this);
 		voter = new AssociationExpression("voter", this);
 		is_deleted = new IntegerExpression("is_deleted", this);

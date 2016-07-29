@@ -21,6 +21,7 @@ import org.orm.criteria.*;
 public class Finger_printDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression finger_print_id;
 	public final StringExpression fingerprint_name;
+	public final BlobExpression fingerprint_blob;
 	public final IntegerExpression voterId;
 	public final AssociationExpression voter;
 	public final IntegerExpression is_deleted;
@@ -34,6 +35,7 @@ public class Finger_printDetachedCriteria extends AbstractORMDetachedCriteria {
 		super(entities.Finger_print.class, entities.Finger_printCriteria.class);
 		finger_print_id = new IntegerExpression("finger_print_id", this.getDetachedCriteria());
 		fingerprint_name = new StringExpression("fingerprint_name", this.getDetachedCriteria());
+		fingerprint_blob = new BlobExpression("fingerprint_blob", this.getDetachedCriteria());
 		voterId = new IntegerExpression("voter.voter_id", this.getDetachedCriteria());
 		voter = new AssociationExpression("voter", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());
@@ -48,6 +50,7 @@ public class Finger_printDetachedCriteria extends AbstractORMDetachedCriteria {
 		super(aDetachedCriteria, entities.Finger_printCriteria.class);
 		finger_print_id = new IntegerExpression("finger_print_id", this.getDetachedCriteria());
 		fingerprint_name = new StringExpression("fingerprint_name", this.getDetachedCriteria());
+		fingerprint_blob = new BlobExpression("fingerprint_blob", this.getDetachedCriteria());
 		voterId = new IntegerExpression("voter.voter_id", this.getDetachedCriteria());
 		voter = new AssociationExpression("voter", this.getDetachedCriteria());
 		is_deleted = new IntegerExpression("is_deleted", this.getDetachedCriteria());

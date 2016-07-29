@@ -30,7 +30,6 @@ public class Polling_stationCriteria extends AbstractORMCriteria {
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
 	public final CollectionExpression voter;
-	public final CollectionExpression candidate;
 	
 	public Polling_stationCriteria(Criteria criteria) {
 		super(criteria);
@@ -45,7 +44,6 @@ public class Polling_stationCriteria extends AbstractORMCriteria {
 		last_edit_date = new TimestampExpression("last_edit_date", this);
 		last_edit_by = new IntegerExpression("last_edit_by", this);
 		voter = new CollectionExpression("voter", this);
-		candidate = new CollectionExpression("candidate", this);
 	}
 	
 	public Polling_stationCriteria(PersistentSession session) {
@@ -62,10 +60,6 @@ public class Polling_stationCriteria extends AbstractORMCriteria {
 	
 	public VoterCriteria createVoterCriteria() {
 		return new VoterCriteria(createCriteria("voter"));
-	}
-	
-	public CandidateCriteria createCandidateCriteria() {
-		return new CandidateCriteria(createCriteria("candidate"));
 	}
 	
 	public Polling_station uniquePolling_station() {

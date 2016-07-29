@@ -369,8 +369,8 @@ public class Group_user implements Serializable {
 				getUser_detail().getGroup_user().remove(this);
 			}
 			
-			if(getGroup() != null) {
-				getGroup().getGroup_user().remove(this);
+			if(getGroup_detail() != null) {
+				getGroup_detail().getGroup_user().remove(this);
 			}
 			
 			return delete();
@@ -387,8 +387,8 @@ public class Group_user implements Serializable {
 				getUser_detail().getGroup_user().remove(this);
 			}
 			
-			if(getGroup() != null) {
-				getGroup().getGroup_user().remove(this);
+			if(getGroup_detail() != null) {
+				getGroup_detail().getGroup_user().remove(this);
 			}
 			
 			try {
@@ -417,8 +417,8 @@ public class Group_user implements Serializable {
 	
 	@ManyToOne(targetEntity=entities.Group_detail.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="group_id", referencedColumnName="group_detail_id", nullable=false) })	
-	private entities.Group_detail group;
+	@JoinColumns({ @JoinColumn(name="group_detail_id", referencedColumnName="group_detail_id", nullable=false) })	
+	private entities.Group_detail group_detail;
 	
 	@Column(name="is_deleted", nullable=true, length=1)	
 	private Integer is_deleted;
@@ -518,12 +518,12 @@ public class Group_user implements Serializable {
 		return user_detail;
 	}
 	
-	public void setGroup(entities.Group_detail value) {
-		this.group = value;
+	public void setGroup_detail(entities.Group_detail value) {
+		this.group_detail = value;
 	}
 	
-	public entities.Group_detail getGroup() {
-		return group;
+	public entities.Group_detail getGroup_detail() {
+		return group_detail;
 	}
 	
 	public String toString() {

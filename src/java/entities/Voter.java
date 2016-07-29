@@ -458,9 +458,6 @@ public class Voter implements Serializable {
 	@org.hibernate.annotations.GenericGenerator(name="ENTITIES_VOTER_VOTER_ID_GENERATOR", strategy="native")	
 	private int voter_id;
 	
-	@Column(name="voter_name", nullable=false, length=50)	
-	private String voter_name;
-	
 	@ManyToOne(targetEntity=entities.Polling_station.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="polling_station_id", referencedColumnName="polling_station_id", nullable=false) })	
@@ -489,6 +486,9 @@ public class Voter implements Serializable {
 	
 	@Column(name="image_name", nullable=true, length=100)	
 	private String image_name;
+	
+	@Column(name="image_blob", nullable=true)	
+	private java.sql.Blob image_blob;
 	
 	@ManyToOne(targetEntity=entities.Sub_county.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
@@ -550,14 +550,6 @@ public class Voter implements Serializable {
 		return getVoter_id();
 	}
 	
-	public void setVoter_name(String value) {
-		this.voter_name = value;
-	}
-	
-	public String getVoter_name() {
-		return voter_name;
-	}
-	
 	public void setSur_name(String value) {
 		this.sur_name = value;
 	}
@@ -604,6 +596,14 @@ public class Voter implements Serializable {
 	
 	public String getImage_name() {
 		return image_name;
+	}
+	
+	public void setImage_blob(java.sql.Blob value) {
+		this.image_blob = value;
+	}
+	
+	public java.sql.Blob getImage_blob() {
+		return image_blob;
 	}
 	
 	public void setIs_deleted(int value) {

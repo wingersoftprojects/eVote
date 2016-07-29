@@ -367,11 +367,11 @@ public class Group_detail implements Serializable {
 		try {
 			entities.Group_right[] lGroup_rights = (entities.Group_right[])getGroup_right().toArray(new entities.Group_right[getGroup_right().size()]);
 			for(int i = 0; i < lGroup_rights.length; i++) {
-				lGroup_rights[i].setGroup(null);
+				lGroup_rights[i].setGroup_detail(null);
 			}
 			entities.Group_user[] lGroup_users = (entities.Group_user[])getGroup_user().toArray(new entities.Group_user[getGroup_user().size()]);
 			for(int i = 0; i < lGroup_users.length; i++) {
-				lGroup_users[i].setGroup(null);
+				lGroup_users[i].setGroup_detail(null);
 			}
 			return delete();
 		}
@@ -385,11 +385,11 @@ public class Group_detail implements Serializable {
 		try {
 			entities.Group_right[] lGroup_rights = (entities.Group_right[])getGroup_right().toArray(new entities.Group_right[getGroup_right().size()]);
 			for(int i = 0; i < lGroup_rights.length; i++) {
-				lGroup_rights[i].setGroup(null);
+				lGroup_rights[i].setGroup_detail(null);
 			}
 			entities.Group_user[] lGroup_users = (entities.Group_user[])getGroup_user().toArray(new entities.Group_user[getGroup_user().size()]);
 			for(int i = 0; i < lGroup_users.length; i++) {
-				lGroup_users[i].setGroup(null);
+				lGroup_users[i].setGroup_detail(null);
 			}
 			try {
 				session.delete(this);
@@ -431,12 +431,12 @@ public class Group_detail implements Serializable {
 	@Column(name="last_edit_by", nullable=true, length=11)	
 	private Integer last_edit_by;
 	
-	@OneToMany(mappedBy="group", targetEntity=entities.Group_right.class)	
+	@OneToMany(mappedBy="group_detail", targetEntity=entities.Group_right.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set group_right = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="group", targetEntity=entities.Group_user.class)	
+	@OneToMany(mappedBy="group_detail", targetEntity=entities.Group_user.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set group_user = new java.util.HashSet();

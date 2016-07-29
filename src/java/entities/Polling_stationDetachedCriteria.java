@@ -30,7 +30,6 @@ public class Polling_stationDetachedCriteria extends AbstractORMDetachedCriteria
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
 	public final CollectionExpression voter;
-	public final CollectionExpression candidate;
 	
 	public Polling_stationDetachedCriteria() {
 		super(entities.Polling_station.class, entities.Polling_stationCriteria.class);
@@ -45,7 +44,6 @@ public class Polling_stationDetachedCriteria extends AbstractORMDetachedCriteria
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
-		candidate = new CollectionExpression("candidate", this.getDetachedCriteria());
 	}
 	
 	public Polling_stationDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -61,7 +59,6 @@ public class Polling_stationDetachedCriteria extends AbstractORMDetachedCriteria
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
 		voter = new CollectionExpression("voter", this.getDetachedCriteria());
-		candidate = new CollectionExpression("candidate", this.getDetachedCriteria());
 	}
 	
 	public VillageDetachedCriteria createVillageCriteria() {
@@ -70,10 +67,6 @@ public class Polling_stationDetachedCriteria extends AbstractORMDetachedCriteria
 	
 	public VoterDetachedCriteria createVoterCriteria() {
 		return new VoterDetachedCriteria(createCriteria("voter"));
-	}
-	
-	public CandidateDetachedCriteria createCandidateCriteria() {
-		return new CandidateDetachedCriteria(createCriteria("candidate"));
 	}
 	
 	public Polling_station uniquePolling_station(PersistentSession session) {

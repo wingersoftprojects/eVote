@@ -20,8 +20,8 @@ import org.orm.criteria.*;
 
 public class Group_rightDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression group_right_id;
-	public final IntegerExpression groupId;
-	public final AssociationExpression group;
+	public final IntegerExpression group_detailId;
+	public final AssociationExpression group_detail;
 	public final StringExpression function_name;
 	public final IntegerExpression allow_view;
 	public final IntegerExpression allow_add;
@@ -37,8 +37,8 @@ public class Group_rightDetachedCriteria extends AbstractORMDetachedCriteria {
 	public Group_rightDetachedCriteria() {
 		super(entities.Group_right.class, entities.Group_rightCriteria.class);
 		group_right_id = new IntegerExpression("group_right_id", this.getDetachedCriteria());
-		groupId = new IntegerExpression("group.group_detail_id", this.getDetachedCriteria());
-		group = new AssociationExpression("group", this.getDetachedCriteria());
+		group_detailId = new IntegerExpression("group_detail.group_detail_id", this.getDetachedCriteria());
+		group_detail = new AssociationExpression("group_detail", this.getDetachedCriteria());
 		function_name = new StringExpression("function_name", this.getDetachedCriteria());
 		allow_view = new IntegerExpression("allow_view", this.getDetachedCriteria());
 		allow_add = new IntegerExpression("allow_add", this.getDetachedCriteria());
@@ -55,8 +55,8 @@ public class Group_rightDetachedCriteria extends AbstractORMDetachedCriteria {
 	public Group_rightDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, entities.Group_rightCriteria.class);
 		group_right_id = new IntegerExpression("group_right_id", this.getDetachedCriteria());
-		groupId = new IntegerExpression("group.group_detail_id", this.getDetachedCriteria());
-		group = new AssociationExpression("group", this.getDetachedCriteria());
+		group_detailId = new IntegerExpression("group_detail.group_detail_id", this.getDetachedCriteria());
+		group_detail = new AssociationExpression("group_detail", this.getDetachedCriteria());
 		function_name = new StringExpression("function_name", this.getDetachedCriteria());
 		allow_view = new IntegerExpression("allow_view", this.getDetachedCriteria());
 		allow_add = new IntegerExpression("allow_add", this.getDetachedCriteria());
@@ -70,8 +70,8 @@ public class Group_rightDetachedCriteria extends AbstractORMDetachedCriteria {
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
 	}
 	
-	public Group_detailDetachedCriteria createGroupCriteria() {
-		return new Group_detailDetachedCriteria(createCriteria("group"));
+	public Group_detailDetachedCriteria createGroup_detailCriteria() {
+		return new Group_detailDetachedCriteria(createCriteria("group_detail"));
 	}
 	
 	public Group_right uniqueGroup_right(PersistentSession session) {

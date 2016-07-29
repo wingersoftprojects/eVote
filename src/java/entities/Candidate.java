@@ -373,10 +373,6 @@ public class Candidate implements Serializable {
 				getPost().getCandidate().remove(this);
 			}
 			
-			if(getPoll_station() != null) {
-				getPoll_station().getCandidate().remove(this);
-			}
-			
 			entities.Vote[] lVotes = (entities.Vote[])getVote().toArray(new entities.Vote[getVote().size()]);
 			for(int i = 0; i < lVotes.length; i++) {
 				lVotes[i].setCandidate(null);
@@ -397,10 +393,6 @@ public class Candidate implements Serializable {
 			
 			if(getPost() != null) {
 				getPost().getCandidate().remove(this);
-			}
-			
-			if(getPoll_station() != null) {
-				getPoll_station().getCandidate().remove(this);
 			}
 			
 			entities.Vote[] lVotes = (entities.Vote[])getVote().toArray(new entities.Vote[getVote().size()]);
@@ -426,9 +418,6 @@ public class Candidate implements Serializable {
 	@org.hibernate.annotations.GenericGenerator(name="ENTITIES_CANDIDATE_CANDIDATE_ID_GENERATOR", strategy="native")	
 	private int candidate_id;
 	
-	@Column(name="candidate_name", nullable=false, length=50)	
-	private String candidate_name;
-	
 	@ManyToOne(targetEntity=entities.Voter.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="voter_id", referencedColumnName="voter_id", nullable=false) })	
@@ -438,11 +427,6 @@ public class Candidate implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="post_id", referencedColumnName="post_id", nullable=false) })	
 	private entities.Post post;
-	
-	@ManyToOne(targetEntity=entities.Polling_station.class, fetch=FetchType.LAZY)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="poll_station_id", referencedColumnName="polling_station_id", nullable=false) })	
-	private entities.Polling_station poll_station;
 	
 	@Column(name="is_deleted", nullable=true, length=1)	
 	private Integer is_deleted;
@@ -477,14 +461,6 @@ public class Candidate implements Serializable {
 	
 	public int getORMID() {
 		return getCandidate_id();
-	}
-	
-	public void setCandidate_name(String value) {
-		this.candidate_name = value;
-	}
-	
-	public String getCandidate_name() {
-		return candidate_name;
 	}
 	
 	public void setIs_deleted(int value) {
@@ -561,14 +537,6 @@ public class Candidate implements Serializable {
 	
 	public entities.Post getPost() {
 		return post;
-	}
-	
-	public void setPoll_station(entities.Polling_station value) {
-		this.poll_station = value;
-	}
-	
-	public entities.Polling_station getPoll_station() {
-		return poll_station;
 	}
 	
 	public void setVote(java.util.Set value) {

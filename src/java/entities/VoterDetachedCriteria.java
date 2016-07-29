@@ -20,7 +20,6 @@ import org.orm.criteria.*;
 
 public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression voter_id;
-	public final StringExpression voter_name;
 	public final IntegerExpression polling_stationId;
 	public final AssociationExpression polling_station;
 	public final IntegerExpression villageId;
@@ -31,6 +30,7 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression tittle;
 	public final DateExpression dob;
 	public final StringExpression image_name;
+	public final BlobExpression image_blob;
 	public final IntegerExpression sub_countyId;
 	public final AssociationExpression sub_county;
 	public final IntegerExpression countyId;
@@ -51,7 +51,6 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	public VoterDetachedCriteria() {
 		super(entities.Voter.class, entities.VoterCriteria.class);
 		voter_id = new IntegerExpression("voter_id", this.getDetachedCriteria());
-		voter_name = new StringExpression("voter_name", this.getDetachedCriteria());
 		polling_stationId = new IntegerExpression("polling_station.polling_station_id", this.getDetachedCriteria());
 		polling_station = new AssociationExpression("polling_station", this.getDetachedCriteria());
 		villageId = new IntegerExpression("village.village_id", this.getDetachedCriteria());
@@ -62,6 +61,7 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		tittle = new StringExpression("tittle", this.getDetachedCriteria());
 		dob = new DateExpression("dob", this.getDetachedCriteria());
 		image_name = new StringExpression("image_name", this.getDetachedCriteria());
+		image_blob = new BlobExpression("image_blob", this.getDetachedCriteria());
 		sub_countyId = new IntegerExpression("sub_county.sub_county_id", this.getDetachedCriteria());
 		sub_county = new AssociationExpression("sub_county", this.getDetachedCriteria());
 		countyId = new IntegerExpression("county.county_id", this.getDetachedCriteria());
@@ -83,7 +83,6 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	public VoterDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, entities.VoterCriteria.class);
 		voter_id = new IntegerExpression("voter_id", this.getDetachedCriteria());
-		voter_name = new StringExpression("voter_name", this.getDetachedCriteria());
 		polling_stationId = new IntegerExpression("polling_station.polling_station_id", this.getDetachedCriteria());
 		polling_station = new AssociationExpression("polling_station", this.getDetachedCriteria());
 		villageId = new IntegerExpression("village.village_id", this.getDetachedCriteria());
@@ -94,6 +93,7 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		tittle = new StringExpression("tittle", this.getDetachedCriteria());
 		dob = new DateExpression("dob", this.getDetachedCriteria());
 		image_name = new StringExpression("image_name", this.getDetachedCriteria());
+		image_blob = new BlobExpression("image_blob", this.getDetachedCriteria());
 		sub_countyId = new IntegerExpression("sub_county.sub_county_id", this.getDetachedCriteria());
 		sub_county = new AssociationExpression("sub_county", this.getDetachedCriteria());
 		countyId = new IntegerExpression("county.county_id", this.getDetachedCriteria());

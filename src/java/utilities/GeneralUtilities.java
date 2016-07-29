@@ -5,14 +5,20 @@
  */
 package utilities;
 
+import com.mysql.jdbc.Blob;
 import entities.EVotingPersistentManager;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.orm.PersistentException;
+import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -76,4 +82,31 @@ public class GeneralUtilities implements Serializable {
                 return "";
         }
     }
+    
+    public static byte[] getBlobFromImageFile(String file_full_name){//"C:\\mavan-hibernate-image-mysql.gif"
+    	File file = new File(file_full_name);
+        byte[] bFile = new byte[(int) file.length()];
+        try {
+	     FileInputStream fileInputStream = new FileInputStream(file);
+	     //convert file into array of bytes
+	     fileInputStream.read(bFile);
+	     fileInputStream.close();
+        } catch (Exception e) {
+	     e.printStackTrace();
+        }
+        return bFile;
+    }
+    
+    public static byte[] getBlobFromStream(FileInputStream fileInputStream,int asize){//FileInputStream fileInputStream = new FileInputStream(file);
+        byte[] bFile = new byte[(int) asize];
+        try {
+	     //convert file into array of bytes
+	     fileInputStream.read(bFile);
+	     fileInputStream.close();
+        } catch (Exception e) {
+	     e.printStackTrace();
+        }
+        return bFile;
+    }
+    
 }

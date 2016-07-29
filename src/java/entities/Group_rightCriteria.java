@@ -20,8 +20,8 @@ import org.orm.criteria.*;
 
 public class Group_rightCriteria extends AbstractORMCriteria {
 	public final IntegerExpression group_right_id;
-	public final IntegerExpression groupId;
-	public final AssociationExpression group;
+	public final IntegerExpression group_detailId;
+	public final AssociationExpression group_detail;
 	public final StringExpression function_name;
 	public final IntegerExpression allow_view;
 	public final IntegerExpression allow_add;
@@ -37,8 +37,8 @@ public class Group_rightCriteria extends AbstractORMCriteria {
 	public Group_rightCriteria(Criteria criteria) {
 		super(criteria);
 		group_right_id = new IntegerExpression("group_right_id", this);
-		groupId = new IntegerExpression("group.group_detail_id", this);
-		group = new AssociationExpression("group", this);
+		group_detailId = new IntegerExpression("group_detail.group_detail_id", this);
+		group_detail = new AssociationExpression("group_detail", this);
 		function_name = new StringExpression("function_name", this);
 		allow_view = new IntegerExpression("allow_view", this);
 		allow_add = new IntegerExpression("allow_add", this);
@@ -60,8 +60,8 @@ public class Group_rightCriteria extends AbstractORMCriteria {
 		this(entities.EVotingPersistentManager.instance().getSession());
 	}
 	
-	public Group_detailCriteria createGroupCriteria() {
-		return new Group_detailCriteria(createCriteria("group"));
+	public Group_detailCriteria createGroup_detailCriteria() {
+		return new Group_detailCriteria(createCriteria("group_detail"));
 	}
 	
 	public Group_right uniqueGroup_right() {

@@ -365,8 +365,8 @@ public class Group_right implements Serializable {
 	
 	public boolean deleteAndDissociate()throws PersistentException {
 		try {
-			if(getGroup() != null) {
-				getGroup().getGroup_right().remove(this);
+			if(getGroup_detail() != null) {
+				getGroup_detail().getGroup_right().remove(this);
 			}
 			
 			return delete();
@@ -379,8 +379,8 @@ public class Group_right implements Serializable {
 	
 	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
 		try {
-			if(getGroup() != null) {
-				getGroup().getGroup_right().remove(this);
+			if(getGroup_detail() != null) {
+				getGroup_detail().getGroup_right().remove(this);
 			}
 			
 			try {
@@ -404,8 +404,8 @@ public class Group_right implements Serializable {
 	
 	@ManyToOne(targetEntity=entities.Group_detail.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="group_id", referencedColumnName="group_detail_id", nullable=false) })	
-	private entities.Group_detail group;
+	@JoinColumns({ @JoinColumn(name="group_detail_id", referencedColumnName="group_detail_id", nullable=false) })	
+	private entities.Group_detail group_detail;
 	
 	@Column(name="function_name", nullable=false, length=100)	
 	private String function_name;
@@ -582,12 +582,12 @@ public class Group_right implements Serializable {
 		return last_edit_by;
 	}
 	
-	public void setGroup(entities.Group_detail value) {
-		this.group = value;
+	public void setGroup_detail(entities.Group_detail value) {
+		this.group_detail = value;
 	}
 	
-	public entities.Group_detail getGroup() {
-		return group;
+	public entities.Group_detail getGroup_detail() {
+		return group_detail;
 	}
 	
 	public String toString() {
