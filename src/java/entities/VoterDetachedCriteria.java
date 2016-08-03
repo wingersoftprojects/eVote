@@ -47,6 +47,7 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final AssociationExpression parish;
 	public final CollectionExpression finger_print;
 	public final CollectionExpression candidate;
+	public final CollectionExpression vote;
 	
 	public VoterDetachedCriteria() {
 		super(entities.Voter.class, entities.VoterCriteria.class);
@@ -78,6 +79,7 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		parish = new AssociationExpression("parish", this.getDetachedCriteria());
 		finger_print = new CollectionExpression("finger_print", this.getDetachedCriteria());
 		candidate = new CollectionExpression("candidate", this.getDetachedCriteria());
+		vote = new CollectionExpression("vote", this.getDetachedCriteria());
 	}
 	
 	public VoterDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -110,6 +112,7 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		parish = new AssociationExpression("parish", this.getDetachedCriteria());
 		finger_print = new CollectionExpression("finger_print", this.getDetachedCriteria());
 		candidate = new CollectionExpression("candidate", this.getDetachedCriteria());
+		vote = new CollectionExpression("vote", this.getDetachedCriteria());
 	}
 	
 	public Polling_stationDetachedCriteria createPolling_stationCriteria() {
@@ -142,6 +145,10 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public CandidateDetachedCriteria createCandidateCriteria() {
 		return new CandidateDetachedCriteria(createCriteria("candidate"));
+	}
+	
+	public VoteDetachedCriteria createVoteCriteria() {
+		return new VoteDetachedCriteria(createCriteria("vote"));
 	}
 	
 	public Voter uniqueVoter(PersistentSession session) {

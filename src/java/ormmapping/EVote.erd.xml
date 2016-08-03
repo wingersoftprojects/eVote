@@ -428,17 +428,6 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="vote_name">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>100</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
     <Column name="post_id">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
@@ -535,6 +524,18 @@
       <Type>9</Type>
       <Length>11</Length>
       <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="voter_id">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>voter.voter_id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -2278,6 +2279,16 @@
     </Columns>
     <RefColumns>
       <Column>sub_county_id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKvote252642">
+    <ReferenceTable>vote</ReferenceTable>
+    <ReferencedTable>voter</ReferencedTable>
+    <Columns>
+      <Column>voter_id</Column>
+    </Columns>
+    <RefColumns>
+      <Column>voter_id</Column>
     </RefColumns>
   </ForeignKey>
 </Model>

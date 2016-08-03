@@ -20,7 +20,6 @@ import org.orm.criteria.*;
 
 public class VoteCriteria extends AbstractORMCriteria {
 	public final IntegerExpression vote_id;
-	public final StringExpression vote_name;
 	public final IntegerExpression postId;
 	public final AssociationExpression post;
 	public final IntegerExpression candidateId;
@@ -32,11 +31,12 @@ public class VoteCriteria extends AbstractORMCriteria {
 	public final IntegerExpression add_by;
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
+	public final IntegerExpression voterId;
+	public final AssociationExpression voter;
 	
 	public VoteCriteria(Criteria criteria) {
 		super(criteria);
 		vote_id = new IntegerExpression("vote_id", this);
-		vote_name = new StringExpression("vote_name", this);
 		postId = new IntegerExpression("post.post_id", this);
 		post = new AssociationExpression("post", this);
 		candidateId = new IntegerExpression("candidate.candidate_id", this);
@@ -48,6 +48,8 @@ public class VoteCriteria extends AbstractORMCriteria {
 		add_by = new IntegerExpression("add_by", this);
 		last_edit_date = new TimestampExpression("last_edit_date", this);
 		last_edit_by = new IntegerExpression("last_edit_by", this);
+		voterId = new IntegerExpression("voter.voter_id", this);
+		voter = new AssociationExpression("voter", this);
 	}
 	
 	public VoteCriteria(PersistentSession session) {
@@ -64,6 +66,10 @@ public class VoteCriteria extends AbstractORMCriteria {
 	
 	public CandidateCriteria createCandidateCriteria() {
 		return new CandidateCriteria(createCriteria("candidate"));
+	}
+	
+	public VoterCriteria createVoterCriteria() {
+		return new VoterCriteria(createCriteria("voter"));
 	}
 	
 	public Vote uniqueVote() {

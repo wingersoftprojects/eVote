@@ -47,6 +47,7 @@ public class VoterCriteria extends AbstractORMCriteria {
 	public final AssociationExpression parish;
 	public final CollectionExpression finger_print;
 	public final CollectionExpression candidate;
+	public final CollectionExpression vote;
 	
 	public VoterCriteria(Criteria criteria) {
 		super(criteria);
@@ -78,6 +79,7 @@ public class VoterCriteria extends AbstractORMCriteria {
 		parish = new AssociationExpression("parish", this);
 		finger_print = new CollectionExpression("finger_print", this);
 		candidate = new CollectionExpression("candidate", this);
+		vote = new CollectionExpression("vote", this);
 	}
 	
 	public VoterCriteria(PersistentSession session) {
@@ -118,6 +120,10 @@ public class VoterCriteria extends AbstractORMCriteria {
 	
 	public CandidateCriteria createCandidateCriteria() {
 		return new CandidateCriteria(createCriteria("candidate"));
+	}
+	
+	public VoteCriteria createVoteCriteria() {
+		return new VoteCriteria(createCriteria("vote"));
 	}
 	
 	public Voter uniqueVoter() {

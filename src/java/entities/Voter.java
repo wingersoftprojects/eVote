@@ -397,6 +397,10 @@ public class Voter implements Serializable {
 			for(int i = 0; i < lCandidates.length; i++) {
 				lCandidates[i].setVoter(null);
 			}
+			entities.Vote[] lVotes = (entities.Vote[])getVote().toArray(new entities.Vote[getVote().size()]);
+			for(int i = 0; i < lVotes.length; i++) {
+				lVotes[i].setVoter(null);
+			}
 			return delete();
 		}
 		catch(Exception e) {
@@ -438,6 +442,10 @@ public class Voter implements Serializable {
 			entities.Candidate[] lCandidates = (entities.Candidate[])getCandidate().toArray(new entities.Candidate[getCandidate().size()]);
 			for(int i = 0; i < lCandidates.length; i++) {
 				lCandidates[i].setVoter(null);
+			}
+			entities.Vote[] lVotes = (entities.Vote[])getVote().toArray(new entities.Vote[getVote().size()]);
+			for(int i = 0; i < lVotes.length; i++) {
+				lVotes[i].setVoter(null);
 			}
 			try {
 				session.delete(this);
@@ -537,6 +545,11 @@ public class Voter implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set candidate = new java.util.HashSet();
+	
+	@OneToMany(mappedBy="voter", targetEntity=entities.Vote.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
+	private java.util.Set vote = new java.util.HashSet();
 	
 	private void setVoter_id(int value) {
 		this.voter_id = value;
@@ -729,6 +742,15 @@ public class Voter implements Serializable {
 	
 	public java.util.Set getCandidate() {
 		return candidate;
+	}
+	
+	
+	public void setVote(java.util.Set value) {
+		this.vote = value;
+	}
+	
+	public java.util.Set getVote() {
+		return vote;
 	}
 	
 	

@@ -373,6 +373,10 @@ public class Vote implements Serializable {
 				getCandidate().getVote().remove(this);
 			}
 			
+			if(getVoter() != null) {
+				getVoter().getVote().remove(this);
+			}
+			
 			return delete();
 		}
 		catch(Exception e) {
@@ -389,6 +393,10 @@ public class Vote implements Serializable {
 			
 			if(getCandidate() != null) {
 				getCandidate().getVote().remove(this);
+			}
+			
+			if(getVoter() != null) {
+				getVoter().getVote().remove(this);
 			}
 			
 			try {
@@ -409,9 +417,6 @@ public class Vote implements Serializable {
 	@GeneratedValue(generator="ENTITIES_VOTE_VOTE_ID_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="ENTITIES_VOTE_VOTE_ID_GENERATOR", strategy="native")	
 	private int vote_id;
-	
-	@Column(name="vote_name", nullable=false, length=100)	
-	private String vote_name;
 	
 	@ManyToOne(targetEntity=entities.Post.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
@@ -445,6 +450,11 @@ public class Vote implements Serializable {
 	@Column(name="last_edit_by", nullable=true, length=11)	
 	private Integer last_edit_by;
 	
+	@ManyToOne(targetEntity=entities.Voter.class, fetch=FetchType.LAZY)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
+	@JoinColumns({ @JoinColumn(name="voter_id", referencedColumnName="voter_id", nullable=false) })	
+	private entities.Voter voter;
+	
 	private void setVote_id(int value) {
 		this.vote_id = value;
 	}
@@ -455,14 +465,6 @@ public class Vote implements Serializable {
 	
 	public int getORMID() {
 		return getVote_id();
-	}
-	
-	public void setVote_name(String value) {
-		this.vote_name = value;
-	}
-	
-	public String getVote_name() {
-		return vote_name;
 	}
 	
 	public void setVote_date_time(java.util.Date value) {
@@ -547,6 +549,14 @@ public class Vote implements Serializable {
 	
 	public entities.Candidate getCandidate() {
 		return candidate;
+	}
+	
+	public void setVoter(entities.Voter value) {
+		this.voter = value;
+	}
+	
+	public entities.Voter getVoter() {
+		return voter;
 	}
 	
 	public String toString() {

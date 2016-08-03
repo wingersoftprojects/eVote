@@ -20,7 +20,6 @@ import org.orm.criteria.*;
 
 public class VoteDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression vote_id;
-	public final StringExpression vote_name;
 	public final IntegerExpression postId;
 	public final AssociationExpression post;
 	public final IntegerExpression candidateId;
@@ -32,11 +31,12 @@ public class VoteDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression add_by;
 	public final TimestampExpression last_edit_date;
 	public final IntegerExpression last_edit_by;
+	public final IntegerExpression voterId;
+	public final AssociationExpression voter;
 	
 	public VoteDetachedCriteria() {
 		super(entities.Vote.class, entities.VoteCriteria.class);
 		vote_id = new IntegerExpression("vote_id", this.getDetachedCriteria());
-		vote_name = new StringExpression("vote_name", this.getDetachedCriteria());
 		postId = new IntegerExpression("post.post_id", this.getDetachedCriteria());
 		post = new AssociationExpression("post", this.getDetachedCriteria());
 		candidateId = new IntegerExpression("candidate.candidate_id", this.getDetachedCriteria());
@@ -48,12 +48,13 @@ public class VoteDetachedCriteria extends AbstractORMDetachedCriteria {
 		add_by = new IntegerExpression("add_by", this.getDetachedCriteria());
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
+		voterId = new IntegerExpression("voter.voter_id", this.getDetachedCriteria());
+		voter = new AssociationExpression("voter", this.getDetachedCriteria());
 	}
 	
 	public VoteDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, entities.VoteCriteria.class);
 		vote_id = new IntegerExpression("vote_id", this.getDetachedCriteria());
-		vote_name = new StringExpression("vote_name", this.getDetachedCriteria());
 		postId = new IntegerExpression("post.post_id", this.getDetachedCriteria());
 		post = new AssociationExpression("post", this.getDetachedCriteria());
 		candidateId = new IntegerExpression("candidate.candidate_id", this.getDetachedCriteria());
@@ -65,6 +66,8 @@ public class VoteDetachedCriteria extends AbstractORMDetachedCriteria {
 		add_by = new IntegerExpression("add_by", this.getDetachedCriteria());
 		last_edit_date = new TimestampExpression("last_edit_date", this.getDetachedCriteria());
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
+		voterId = new IntegerExpression("voter.voter_id", this.getDetachedCriteria());
+		voter = new AssociationExpression("voter", this.getDetachedCriteria());
 	}
 	
 	public PostDetachedCriteria createPostCriteria() {
@@ -73,6 +76,10 @@ public class VoteDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public CandidateDetachedCriteria createCandidateCriteria() {
 		return new CandidateDetachedCriteria(createCriteria("candidate"));
+	}
+	
+	public VoterDetachedCriteria createVoterCriteria() {
+		return new VoterDetachedCriteria(createCriteria("voter"));
 	}
 	
 	public Vote uniqueVote(PersistentSession session) {
