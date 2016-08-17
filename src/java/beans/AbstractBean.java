@@ -128,7 +128,7 @@ public abstract class AbstractBean<T> {
     public List<T> getTs() {
         try {
             if (entityClass != null) {
-                ts = (List<T>) EVotingPersistentManager.instance().getSession().createCriteria(entityClass).add(Restrictions.ne("is_deleted", 1)).list();
+                ts = (List<T>) EVotingPersistentManager.instance().getSession().createCriteria(entityClass).add(Restrictions.ne("is_deleted", 0)).list();
             } else {
                 ts = new ArrayList<>();
             }
@@ -141,7 +141,7 @@ public abstract class AbstractBean<T> {
     public List<T> getTsActive() {
         try {
             if (entityClass != null) {
-                tsActive = (List<T>) EVotingPersistentManager.instance().getSession().createCriteria(entityClass).add(Restrictions.eq("is_active", 1)).add(Restrictions.ne("is_deleted", 1)).list();
+                tsActive = (List<T>) EVotingPersistentManager.instance().getSession().createCriteria(entityClass).add(Restrictions.eq("is_active", 1)).add(Restrictions.ne("is_deleted", 0)).list();
             } else {
                 ts = new ArrayList<>();
             }
@@ -225,7 +225,6 @@ public abstract class AbstractBean<T> {
 
     public void cancel() {
         add();
-        //formstate = "view";
     }
 
     public void delete(T t) {
@@ -267,7 +266,7 @@ public abstract class AbstractBean<T> {
             Logger.getLogger(AbstractBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void save(int aUserDetailId) {
         //no paramater
         Class noparams[] = {};

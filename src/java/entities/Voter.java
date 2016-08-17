@@ -389,10 +389,6 @@ public class Voter implements Serializable {
 				getParish().getVoter().remove(this);
 			}
 			
-			entities.Finger_print[] lFinger_prints = (entities.Finger_print[])getFinger_print().toArray(new entities.Finger_print[getFinger_print().size()]);
-			for(int i = 0; i < lFinger_prints.length; i++) {
-				lFinger_prints[i].setVoter(null);
-			}
 			entities.Candidate[] lCandidates = (entities.Candidate[])getCandidate().toArray(new entities.Candidate[getCandidate().size()]);
 			for(int i = 0; i < lCandidates.length; i++) {
 				lCandidates[i].setVoter(null);
@@ -435,10 +431,6 @@ public class Voter implements Serializable {
 				getParish().getVoter().remove(this);
 			}
 			
-			entities.Finger_print[] lFinger_prints = (entities.Finger_print[])getFinger_print().toArray(new entities.Finger_print[getFinger_print().size()]);
-			for(int i = 0; i < lFinger_prints.length; i++) {
-				lFinger_prints[i].setVoter(null);
-			}
 			entities.Candidate[] lCandidates = (entities.Candidate[])getCandidate().toArray(new entities.Candidate[getCandidate().size()]);
 			for(int i = 0; i < lCandidates.length; i++) {
 				lCandidates[i].setVoter(null);
@@ -536,10 +528,11 @@ public class Voter implements Serializable {
 	@JoinColumns({ @JoinColumn(name="parish_id", referencedColumnName="parish_id") })	
 	private entities.Parish parish;
 	
-	@OneToMany(mappedBy="voter", targetEntity=entities.Finger_print.class)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
-	private java.util.Set finger_print = new java.util.HashSet();
+	@Column(name="f_image", nullable=true)	
+	private String f_image;
+	
+	@Column(name="f_blob", nullable=true)	
+	private java.sql.Blob f_blob;
 	
 	@OneToMany(mappedBy="voter", targetEntity=entities.Candidate.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
@@ -679,6 +672,22 @@ public class Voter implements Serializable {
 		return last_edit_by;
 	}
 	
+	public void setF_image(String value) {
+		this.f_image = value;
+	}
+	
+	public String getF_image() {
+		return f_image;
+	}
+	
+	public void setF_blob(java.sql.Blob value) {
+		this.f_blob = value;
+	}
+	
+	public java.sql.Blob getF_blob() {
+		return f_blob;
+	}
+	
 	public void setPolling_station(entities.Polling_station value) {
 		this.polling_station = value;
 	}
@@ -726,15 +735,6 @@ public class Voter implements Serializable {
 	public entities.Village getVillage() {
 		return village;
 	}
-	
-	public void setFinger_print(java.util.Set value) {
-		this.finger_print = value;
-	}
-	
-	public java.util.Set getFinger_print() {
-		return finger_print;
-	}
-	
 	
 	public void setCandidate(java.util.Set value) {
 		this.candidate = value;

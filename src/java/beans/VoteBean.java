@@ -76,20 +76,19 @@ public class VoteBean extends AbstractBean<Vote> implements Serializable  {
      * @return the votesModel
      */
     public BarChartModel getVotesModel() {
+        GeneralUtilities.clearsession();
         BarChartModel model = new BarChartModel();
-
         ChartSeries ser1 = new ChartSeries();
         ser1.setLabel("VOTES");
 
         try {
             String qString = "SELECT v.candidate,count(v.candidate) FROM Vote v "
-                    + "WHERE v.is_active=1 AND v.is_deleted=0 "
                     + "GROUP BY v.candidate";
             List<Object[]> result = EVotingPersistentManager.instance().getSession().createQuery(qString).list();
             for (Object[] resultElement : result) {
                 Candidate aCandidate = (Candidate) resultElement[0];
                 long number = (long) resultElement[1];
-                ser1.set(aCandidate.getVoter().getSur_name() + aCandidate.getVoter().getGiven_names(), number);
+                ser1.set(aCandidate.getVoter().getSur_name() + " " + aCandidate.getVoter().getGiven_names(), number);
             }
         } catch (PersistentException | NullPointerException ex) {
             Logger.getLogger(VoteBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -117,5 +116,11 @@ public class VoteBean extends AbstractBean<Vote> implements Serializable  {
      */
     public void setVotesModel(BarChartModel votesModel) {
         this.votesModel = votesModel;
+    }
+    
+    public int refreshVotes(){
+        GeneralUtilities.clearsession();
+        votes=super.getTs();
+        return votes.size();
     }
 }

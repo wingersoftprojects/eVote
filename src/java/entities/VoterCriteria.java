@@ -45,7 +45,8 @@ public class VoterCriteria extends AbstractORMCriteria {
 	public final IntegerExpression last_edit_by;
 	public final IntegerExpression parishId;
 	public final AssociationExpression parish;
-	public final CollectionExpression finger_print;
+	public final StringExpression f_image;
+	public final BlobExpression f_blob;
 	public final CollectionExpression candidate;
 	public final CollectionExpression vote;
 	
@@ -77,7 +78,8 @@ public class VoterCriteria extends AbstractORMCriteria {
 		last_edit_by = new IntegerExpression("last_edit_by", this);
 		parishId = new IntegerExpression("parish.parish_id", this);
 		parish = new AssociationExpression("parish", this);
-		finger_print = new CollectionExpression("finger_print", this);
+		f_image = new StringExpression("f_image", this);
+		f_blob = new BlobExpression("f_blob", this);
 		candidate = new CollectionExpression("candidate", this);
 		vote = new CollectionExpression("vote", this);
 	}
@@ -112,10 +114,6 @@ public class VoterCriteria extends AbstractORMCriteria {
 	
 	public ParishCriteria createParishCriteria() {
 		return new ParishCriteria(createCriteria("parish"));
-	}
-	
-	public Finger_printCriteria createFinger_printCriteria() {
-		return new Finger_printCriteria(createCriteria("finger_print"));
 	}
 	
 	public CandidateCriteria createCandidateCriteria() {

@@ -6,7 +6,6 @@
 package beans;
 
 import entities.EVotingPersistentManager;
-import entities.Post;
 import entities.Voter;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,7 +17,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.hibernate.HibernateException;
 import org.orm.PersistentException;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
+import utilities.GeneralUtilities;
 
 /**
  *
@@ -26,11 +27,14 @@ import org.primefaces.model.UploadedFile;
  */
 @ManagedBean
 @SessionScoped
-public class VoterBean extends AbstractBean<Voter> implements Serializable  {
+public class VoterBean extends AbstractBean<Voter> implements Serializable {
+
     private UploadedFile file;
+
     public VoterBean() {
         super(Voter.class);
     }
+
     @Override
     public void init() {
         if (super.getEntityClass() == null) {
@@ -61,6 +65,7 @@ public class VoterBean extends AbstractBean<Voter> implements Serializable  {
     public void setFile(UploadedFile file) {
         this.file = file;
     }
+
     public List<Voter> getts() {
         List<Voter> temp = new ArrayList<>();
         try {
@@ -74,4 +79,46 @@ public class VoterBean extends AbstractBean<Voter> implements Serializable  {
         }
         return temp;
     }
+
+    public boolean isFingerprintFound(Voter voter) {
+        try {
+            if (null == voter || voter.getF_image().isEmpty() || voter.equals("") || null == voter.getF_image()) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (NullPointerException npe) {
+            return false;
+        }
+    }
+
+    public void deleteFingerprint(Voter voter, int user_detail_id) {
+        try {
+            super.setFormstate("edit");
+            voter.setF_image("");
+            super.setSelected(voter);
+            super.save(user_detail_id);
+        } catch (NullPointerException npe) {
+            System.err.println(npe.getMessage());
+        }
+    }
+    
+    public void handleFileUpload(FileUploadEvent event) {
+        try {
+            super.getSelected().setImage_name(event.getFile().getFileName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public List<Voter> getVoters(){
+        GeneralUtilities.clearsession();
+        return super.getTs();
+    }
+    
+    public void cancelVoter(){
+        GeneralUtilities.clearsession();
+        super.cancel();
+    }
+
 }

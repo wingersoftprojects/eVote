@@ -4,12 +4,20 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./layout.xhtml"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:event listener="#{voteBean.init()}" type="preRenderView" />
+            <f:event listener="#{voteBean.initializelist()}" type="preRenderView" />
+        </f:metadata>
+    </ui:define>
     <ui:define name="content">
         <h:form>
+            <p:poll interval="3" update="fs_votes" />
             <p:growl id="messages" showDetail="true" />
-            <p:fieldset legend="CURRENT VOTING RESULTS...">
+            <p:fieldset id="fs_votes" legend="CURRENT TOTAL VOTES RECEIVED = #{voteBean.refreshVotes()}">
                 <p:chart id="chart_results" type="bar" model="#{voteBean.votesModel}" />
             </p:fieldset>
         </h:form>

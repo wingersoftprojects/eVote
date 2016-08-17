@@ -50,7 +50,6 @@ public class EVotingPersistentManager extends PersistentManager {
 		configuration.addAnnotatedClass(entities.County.class);
 		configuration.addAnnotatedClass(entities.Sub_county.class);
 		configuration.addAnnotatedClass(entities.Parish.class);
-		configuration.addAnnotatedClass(entities.Finger_print.class);
 		configuration.addAnnotatedClass(entities.Group_user.class);
 		configuration.addAnnotatedClass(entities.Village.class);
 		configuration.buildMappings();

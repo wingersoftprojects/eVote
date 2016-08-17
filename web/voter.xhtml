@@ -53,7 +53,7 @@
                             <f:selectItem itemLabel="Rev" itemValue="Rev" />
                         </p:selectOneMenu>
                         <p:outputLabel value="Voter Image:" for="voter_image"/>
-                        <p:fileUpload id="voter_image" value="#{voterBean.file}" mode="simple" skinSimple="true" required="true" requiredMessage="Voter Image Required"/>
+                        <p:fileUpload id="voter_image" fileUploadListener="#{voterBean.handleFileUpload}" mode="advanced" multiple="false" auto="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="messages"/>
                         <p:outputLabel value="Date of Birth:" for="dob"/>
                         <p:calendar id="dob" value="#{voterBean.selected.dob}" navigator="true" showButtonPanel="true" pattern="dd-MM-yyyy" required="true" requiredMessage="Date of Birth field is required"/>
                         <p:outputLabel for="district" value="District:" />
@@ -103,12 +103,12 @@
                         <p:commandButton value="CLEAR" icon="ui-icon-cancel" action="#{voterBean.cancel()}" update="@form" process="@this"/>
                     </p:panelGrid>
                 </p:fieldset>
-                <p:dataTable id="voter_table" value="#{voterBean.ts}" var="item" rows="10"
+                <p:dataTable id="voter_table" value="#{voterBean.getVoters()}" var="item" rows="10"
                              paginator="true"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="1,10,11,30,10,100">
                     <p:column headerText="Image">
-                        <h:graphicImage value="/imag1.png" width="100px" height="100px" />
+                        <h:graphicImage value="image/#{item.image_name}" width="100px" height="100px" />
                     </p:column>
                     <p:column headerText="Voter Names">
                         #{item.sur_name} #{item.given_names}
@@ -124,6 +124,9 @@
                         </p:commandButton>
                         <p:commandButton value="Delete" actionListener="#{voterBean.delete(item)}" update="@form" process="@this">
                             <p:confirm header="Confirmation" message="Are you sure you want to delete?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                        <p:commandButton value="Reset Fingerprint" actionListener="#{voterBean.deleteFingerprint(item,loginBean.user_detail.user_detail_id)}" update="@form" process="@this" rendered="#{voterBean.isFingerprintFound(item)}">
+                            <p:confirm header="Confirmation" message="Are you sure you want to Reset Fingerprint?" icon="ui-icon-alert" />
                         </p:commandButton>
 
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

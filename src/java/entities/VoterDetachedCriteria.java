@@ -45,7 +45,8 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression last_edit_by;
 	public final IntegerExpression parishId;
 	public final AssociationExpression parish;
-	public final CollectionExpression finger_print;
+	public final StringExpression f_image;
+	public final BlobExpression f_blob;
 	public final CollectionExpression candidate;
 	public final CollectionExpression vote;
 	
@@ -77,7 +78,8 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
 		parishId = new IntegerExpression("parish.parish_id", this.getDetachedCriteria());
 		parish = new AssociationExpression("parish", this.getDetachedCriteria());
-		finger_print = new CollectionExpression("finger_print", this.getDetachedCriteria());
+		f_image = new StringExpression("f_image", this.getDetachedCriteria());
+		f_blob = new BlobExpression("f_blob", this.getDetachedCriteria());
 		candidate = new CollectionExpression("candidate", this.getDetachedCriteria());
 		vote = new CollectionExpression("vote", this.getDetachedCriteria());
 	}
@@ -110,7 +112,8 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 		last_edit_by = new IntegerExpression("last_edit_by", this.getDetachedCriteria());
 		parishId = new IntegerExpression("parish.parish_id", this.getDetachedCriteria());
 		parish = new AssociationExpression("parish", this.getDetachedCriteria());
-		finger_print = new CollectionExpression("finger_print", this.getDetachedCriteria());
+		f_image = new StringExpression("f_image", this.getDetachedCriteria());
+		f_blob = new BlobExpression("f_blob", this.getDetachedCriteria());
 		candidate = new CollectionExpression("candidate", this.getDetachedCriteria());
 		vote = new CollectionExpression("vote", this.getDetachedCriteria());
 	}
@@ -137,10 +140,6 @@ public class VoterDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public ParishDetachedCriteria createParishCriteria() {
 		return new ParishDetachedCriteria(createCriteria("parish"));
-	}
-	
-	public Finger_printDetachedCriteria createFinger_printCriteria() {
-		return new Finger_printDetachedCriteria(createCriteria("finger_print"));
 	}
 	
 	public CandidateDetachedCriteria createCandidateCriteria() {

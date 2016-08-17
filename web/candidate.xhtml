@@ -62,7 +62,7 @@
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="1,10,11,30,10,100">
                     <p:column headerText="Image">
-                        <h:graphicImage value="/imag1.png" width="100px" height="100px" />
+                        <h:graphicImage value="image/#{item.voter.image_name}" width="100px" height="100px" />
                     </p:column>
                     <p:column headerText="Candidate">
                         #{item.voter.sur_name} #{item.voter.given_names}
