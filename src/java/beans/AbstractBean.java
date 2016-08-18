@@ -7,6 +7,7 @@ package beans;
 
 import entities.EVotingPersistentManager;
 import entities.User_detail;
+import entities.Vote;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
@@ -128,7 +129,21 @@ public abstract class AbstractBean<T> {
     public List<T> getTs() {
         try {
             if (entityClass != null) {
-                ts = (List<T>) EVotingPersistentManager.instance().getSession().createCriteria(entityClass).add(Restrictions.ne("is_deleted", 0)).list();
+                ts = (List<T>) EVotingPersistentManager.instance().getSession().createCriteria(entityClass).add(Restrictions.eq("is_deleted", 0)).list();
+            } else {
+                ts = new ArrayList<>();
+            }
+        } catch (PersistentException | HibernateException ex) {
+            Logger.getLogger(AbstractBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ts;
+    }
+    
+    public List<T> getTs2() {
+        try {
+            if (entityClass != null) {
+                //ts = (List<T>) EVotingPersistentManager.instance().getSession().createCriteria(entityClass).add(Restrictions.ne("is_deleted", 0)).list();
+                ts=Vote.queryVote(null, null);
             } else {
                 ts = new ArrayList<>();
             }
@@ -141,7 +156,7 @@ public abstract class AbstractBean<T> {
     public List<T> getTsActive() {
         try {
             if (entityClass != null) {
-                tsActive = (List<T>) EVotingPersistentManager.instance().getSession().createCriteria(entityClass).add(Restrictions.eq("is_active", 1)).add(Restrictions.ne("is_deleted", 0)).list();
+                tsActive = (List<T>) EVotingPersistentManager.instance().getSession().createCriteria(entityClass).add(Restrictions.eq("is_active", 1)).add(Restrictions.eq("is_deleted", 0)).list();
             } else {
                 ts = new ArrayList<>();
             }

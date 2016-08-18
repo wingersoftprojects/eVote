@@ -19,6 +19,7 @@
             <p:growl id="messages" showDetail="true" />
             <p:fieldset id="fs_votes" legend="CURRENT TOTAL VOTES RECEIVED = #{voteBean.refreshVotes()}">
                 <p:chart id="chart_results" type="bar" model="#{voteBean.votesModel}" />
+                <p:chart type="pie" model="#{voteBean.pieModel}"/>
             </p:fieldset>
         </h:form>
     </ui:define>
